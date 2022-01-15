@@ -1,0 +1,6 @@
+# Main
+Django>=3.0,<4.0
+psycopg2>=2.8
+
+# For variables of the environment
+python-decouple>=3.3
