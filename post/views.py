@@ -1,0 +1,1 @@
+"""Views for post app"""
