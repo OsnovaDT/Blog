@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Регистрация{% endblock title %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+{% endblock content %}
