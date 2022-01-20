@@ -3,6 +3,7 @@
 from os.path import join
 from pathlib import Path
 
+from django.urls import reverse_lazy
 from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,12 @@ INSTALLED_APPS = [
     'post',
 ]
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3_2',
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +53,12 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGIN_URL = reverse_lazy('accounts:login')
+
+LOGIN_REDIRECT_URL = reverse_lazy('post:all_posts')
+
+LOGOUT_REDIRECT_URL = reverse_lazy('post:all_posts')
 
 ### STATIC ###
 
