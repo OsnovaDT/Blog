@@ -10,4 +10,4 @@ class SignUp(CreateView):
 
     form_class = UserCreationForm
     template_name = 'accounts/signup.html'
-    success_url = reverse_lazy('post:all_posts')
+    success_url = reverse_lazy('accounts:login')
