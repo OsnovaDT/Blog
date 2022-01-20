@@ -1,0 +1,80 @@
+// Header
+header {
+    border-bottom: 5px solid rgba(143,0,151,255);
+    padding-top: 5px;
+    position: fixed;
+    width: 100%;
+    background-color: #191F22 !important;
+
+    & > input {
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+        background-color: #191F22 !important;
+    }
+
+    & > .container > div {
+        margin-top: 21px;
+        margin-bottom: 21px;
+        align-items: center;
+    }
+}
+
+// User
+
+.user_login {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    & > img {
+        margin-right: 10px;
+    }
+}
+
+#user_dropdown_menu {
+    border-radius: 7px;
+    width: 240px;
+    position: absolute;
+    right: -63px;
+    top: 54px;
+    display: none;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+
+    & > div {
+        margin: 30px 25px;
+        text-align: right;
+
+        & > p > a {
+            font-size: 18px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &_arrow:hover{
+        cursor: pointer;
+    }
+}
+
+.dark_div {
+    background-color: #21282C;
+}
+
+.base_container {
+    padding-top: 180px;
+}
+
+span, h1, h2, h3, h4, h5, h6{
+    color: #FFF;
+}
+
+body{
+    background-color: #191F22 !important;
+}
+
+a{
+    color: rgba(143,0,151,255) !important;
+}
