@@ -1,4 +1,4 @@
-"""Apps file for post app"""
+"""Apps file of post app"""
 
 from django.apps import AppConfig
 

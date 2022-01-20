@@ -1,4 +1,4 @@
-"""Project's asgi"""
+"""ASGI of the project"""
 
 from os import environ
 
