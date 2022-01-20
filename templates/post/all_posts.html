@@ -4,4 +4,19 @@
 
 {% block content %}
     <h1>Все посты</h1>
+
+    {% for post in posts %}
+        {% ifequal post.status 'publish'  %}
+
+            <div>
+                <h2>{{ post.title }}</h2>
+                <h3>{{ post.content }}</h3>
+
+                <h4>{{ post.published_time }}</h4>
+
+                <h4>Лайки: {{ post.likes }}</h4>
+                <h4>Дизлайки: {{ post.dislikes }}</h4>
+            </div>
+        {% endifequal %}
+    {% endfor %}
 {% endblock content %}
