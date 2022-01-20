@@ -1,1 +1,1 @@
-"""Views for post app"""
+"""Views of post app"""

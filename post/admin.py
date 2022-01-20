@@ -1,6 +1,7 @@
-"""Registered models"""
+"""Registered models of post app"""
 
 from django.contrib import admin
+
 from post.models import Post
 
 

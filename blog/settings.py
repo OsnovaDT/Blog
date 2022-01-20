@@ -1,4 +1,4 @@
-"""Project's settings"""
+"""Settings of the project"""
 
 from os.path import join
 from pathlib import Path
