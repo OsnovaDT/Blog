@@ -1,15 +1,16 @@
 """Routes of post app"""
 
 from django.urls import path
-from django.views.generic.base import TemplateView
+
+from post.views import PostListView
 
 
 app_name = 'post'
 
 urlpatterns = [
     path(
-        '',
-        TemplateView.as_view(template_name='post/all_posts.html'),
+        'all/',
+        PostListView.as_view(),
         name='all_posts'
     ),
 ]
