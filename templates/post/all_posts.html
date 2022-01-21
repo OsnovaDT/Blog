@@ -6,7 +6,7 @@
 {% block content %}
     {% for post in posts %}
         {% ifequal post.status 'publish'  %}
-            <div class="col-md-8 offset-md-2 dark_div post">
+            <div class="col-md-8 offset-md-2 dark_div item">
                 {# Author and post's date #}
                 <div class="post_top_info">
                     <span><a href="#">{{ post.author }}</a></span>

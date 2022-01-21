@@ -22,11 +22,11 @@
 
                             <div id="user_dropdown_menu" class="dark_div">
                                 <div>
-                                    <p><a href="#">Мой профиль</a></p>
+                                    <p><a href="#">My profile</a></p>
 
-                                    <p><a href="#">Сменить пароль</a></p>
+                                    <p><a href="#">Change password</a></p>
 
-                                    <p><a href="#">Выход</a></p>
+                                    <p><a href="{% url 'accounts:logout' %}">Logout</a></p>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
             {% else %}
                 <div class="col-md-2 offset-md-8" style="text-align: right;">
-                    <a href="{% url 'accounts:login' %}">Войти</a>
+                    <a href="{% url 'accounts:login' %}">Login</a>
                 </div>
             {% endif %}
         </div>
