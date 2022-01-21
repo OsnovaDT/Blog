@@ -89,12 +89,15 @@ p{
     color: #FFF;
 }
 
-// Post
-.post{
+.item{
     margin-bottom: 40px;
     padding: 40px !important;
     border-radius: 4px;
+}
 
+// Post
+
+.post{
     &_top_info{
         margin-bottom: 10px;
     }
@@ -128,4 +131,29 @@ p{
 
 *::selection{
     background-color: #8f0097;
+}
+
+// Form
+
+input{
+    border-radius: 4px;
+    border: 1px solid rgba(20, 20, 20, 0.5);
+    font-style: italic;
+    padding: 5px 15px;
+    line-height: 27px;
+    width: 100%;
+    outline: none;
+}
+
+.submit_button{
+    background-color: #15C6B9;
+    color: #FFF;
+    width: 190px;
+    height: 41px;
+    border-radius: 4px;
+    border: 0px;
+
+    &:hover{
+        background-color: #8f0097;
+    }
 }
