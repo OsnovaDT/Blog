@@ -4,6 +4,7 @@ header {
   position: fixed;
   width: 100%;
   background-color: #191F22 !important;
+  z-index: 2;
 }
 header > input {
   color: rgba(255, 255, 255, 0.5);
@@ -67,6 +68,47 @@ body {
 
 a {
   color: #8f0097 !important;
+}
+
+.image_link:hover {
+  text-decoration: none;
+}
+
+p {
+  color: #FFF;
+}
+
+.post {
+  margin-bottom: 40px;
+  padding: 40px !important;
+  border-radius: 4px;
+}
+.post_top_info {
+  margin-bottom: 10px;
+}
+.post_content {
+  font-size: 1rem;
+  line-height: 1.56;
+  overflow-wrap: break-word;
+}
+.post_published_time {
+  font-size: 0.8125rem;
+}
+.post_estimation {
+  margin-top: 40px;
+}
+.post_likes_amount {
+  color: #50cf50;
+}
+.post_dislikes {
+  margin-left: 20px;
+}
+.post_dislikes_amount {
+  color: #e74747;
+}
+
+*::selection {
+  background-color: #8f0097;
 }
 
 /*# sourceMappingURL=styles.css.map */

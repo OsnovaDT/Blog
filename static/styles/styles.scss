@@ -1,10 +1,12 @@
 // Header
+
 header {
     border-bottom: 5px solid rgba(143,0,151,255);
     padding-top: 5px;
     position: fixed;
     width: 100%;
     background-color: #191F22 !important;
+    z-index: 2;
 
     & > input {
         color: rgba(255, 255, 255, 0.5);
@@ -77,4 +79,53 @@ body{
 
 a{
     color: rgba(143,0,151,255) !important;
+}
+
+.image_link:hover{
+    text-decoration: none;
+}
+
+p{
+    color: #FFF;
+}
+
+// Post
+.post{
+    margin-bottom: 40px;
+    padding: 40px !important;
+    border-radius: 4px;
+
+    &_top_info{
+        margin-bottom: 10px;
+    }
+
+    &_content{
+        font-size: 1rem;
+        line-height: 1.56;
+        overflow-wrap: break-word;
+    }
+
+    &_published_time{
+        font-size: .8125rem;
+    }
+
+    &_estimation{
+        margin-top: 40px;
+    }
+
+    &_likes_amount{
+        color: rgb(80, 207, 80);
+    }
+
+    &_dislikes{
+        margin-left: 20px;
+
+        &_amount{
+            color: rgb(231, 71, 71);
+        }
+    }
+}
+
+*::selection{
+    background-color: #8f0097;
 }
