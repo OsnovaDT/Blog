@@ -1,21 +1,40 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 
 {% block title %}Все посты{% endblock title %}
 
 {% block content %}
-    <h1>Все посты</h1>
-
     {% for post in posts %}
         {% ifequal post.status 'publish'  %}
+            <div class="col-md-8 offset-md-2 dark_div post">
+                {# Author and post's date #}
+                <div class="post_top_info">
+                    <span><a href="#">{{ post.author }}</a></span>
 
-            <div>
+                    <span class="post_published_time">
+                        {{ post.published_time }}
+                    </span>
+                </div>
+
+                {# Title #}
                 <h2>{{ post.title }}</h2>
-                <h3>{{ post.content }}</h3>
 
-                <h4>{{ post.published_time }}</h4>
+                {# Content #}
+                <div class="post_content">
+                    <p>{{ post.content|truncatechars:250 }}</ps>
+                </div>
 
-                <h4>Лайки: {{ post.likes }}</h4>
-                <h4>Дизлайки: {{ post.dislikes }}</h4>
+                <div class="post_estimation">
+                    <a href="#" class="image_link">
+                        <img src="{% static 'images/like.png' %}" alt="Like" width="40px" height="40px"> 
+                    </a>
+                    <span class="post_likes_amount">{{ post.likes }}</span>
+
+                    <a href="#" class="image_link post_dislikes">
+                        <img src="{% static 'images/dislike.png' %}" alt="Dislike" width="40px" height="40px"> 
+                    </a>
+                    <span class="post_dislikes_amount">{{ post.dislikes }}</span>
+                </div>
             </div>
         {% endifequal %}
     {% endfor %}
