@@ -27,7 +27,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
 
     model = Post
     template_name = 'post/create_post.html'
-    fields = ('title', 'content', 'author', 'slug', 'status')
+    fields = ('title', 'content', 'author', 'status')
 
 
 def get_post_with_user(request):

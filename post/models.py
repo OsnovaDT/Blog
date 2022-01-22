@@ -31,11 +31,6 @@ class Post(models.Model):
         db_index=True,
     )
 
-    slug = models.SlugField(
-        max_length=255,
-        unique=True,
-    )
-
     published_time = models.DateTimeField(
         auto_now_add=True,
     )
