@@ -83,6 +83,7 @@ a{
 
 .image_link:hover{
     text-decoration: none;
+    cursor: pointer;
 }
 
 p{
@@ -116,16 +117,16 @@ p{
         margin-top: 40px;
     }
 
-    &_likes_amount{
+    &_liked{
         color: rgb(80, 207, 80);
     }
 
-    &_dislikes{
-        margin-left: 20px;
+    &_disliked{
+        color: rgb(231, 71, 71);
+    }
 
-        &_amount{
-            color: rgb(231, 71, 71);
-        }
+    &_dislike{
+        margin-left: 20px;
     }
 }
 
