@@ -64,31 +64,32 @@ def like_post(request):
     """Like the post"""
 
     post, user = get_post_with_user(request)
+    is_liked = False
 
-    # If user delete the like
-    if user in post.liked_authors.all():
-        post.likes -= 1
-        post.liked_authors.remove(user)
-        is_liked = False
+    if user != post.author:
+        # If user delete the like
+        if user in post.liked_authors.all():
+            post.likes -= 1
+            post.liked_authors.remove(user)
 
-    # If user change dislike to like
-    elif user in post.disliked_authors.all():
-        post.likes += 1
-        post.dislikes -= 1
+        # If user change dislike to like
+        elif user in post.disliked_authors.all():
+            post.likes += 1
+            post.dislikes -= 1
 
-        post.liked_authors.add(user)
-        post.disliked_authors.remove(user)
+            post.liked_authors.add(user)
+            post.disliked_authors.remove(user)
 
-        is_liked = True
+            is_liked = True
 
-    # If user likes the post
-    else:
-        post.likes += 1
-        post.liked_authors.add(user)
+        # If user likes the post
+        else:
+            post.likes += 1
+            post.liked_authors.add(user)
 
-        is_liked = True
+            is_liked = True
 
-    post.save()
+        post.save()
 
     return HttpResponse(dumps({
         'likes': post.likes,
@@ -102,32 +103,32 @@ def dislike_post(request):
     """Dislike the post"""
 
     post, user = get_post_with_user(request)
+    is_disliked = False
 
-    # If user delete the like
-    if user in post.disliked_authors.all():
-        post.dislikes -= 1
-        post.disliked_authors.remove(user)
+    if user != post.author:
+        # If user delete the like
+        if user in post.disliked_authors.all():
+            post.dislikes -= 1
+            post.disliked_authors.remove(user)
 
-        is_disliked = False
+        # If user change like to dislike
+        elif user in post.liked_authors.all():
+            post.dislikes += 1
+            post.likes -= 1
 
-    # If user change like to dislike
-    elif user in post.liked_authors.all():
-        post.dislikes += 1
-        post.likes -= 1
+            post.disliked_authors.add(user)
+            post.liked_authors.remove(user)
 
-        post.disliked_authors.add(user)
-        post.liked_authors.remove(user)
+            is_disliked = True
 
-        is_disliked = True
+        # If user dislikes the post
+        else:
+            post.dislikes += 1
+            post.disliked_authors.add(user)
 
-    # If user dislikes the post
-    else:
-        post.dislikes += 1
-        post.disliked_authors.add(user)
+            is_disliked = True
 
-        is_disliked = True
-
-    post.save()
+        post.save()
 
     return HttpResponse(dumps({
         'likes': post.likes,
