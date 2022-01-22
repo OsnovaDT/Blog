@@ -57,11 +57,11 @@
                         processData: false,
                         data: formData,
                         success: function (data) {
-                            if (data.is_liked){
+                            if (data.is_user_liked_this_post){
                                 $(`.post_like_amount[post_id="${postId}"]`).addClass('post_liked');
                             }
 
-                            if (data.is_disliked){
+                            if (data.is_user_disliked_this_post){
                                 $(`.post_dislike_amount[post_id="${postId}"]`).addClass('post_disliked');
                             }
                         }
@@ -89,7 +89,7 @@
                         $(`.post_like_amount[post_id=${postId}]`).text(data.likes);
                         $(`.post_dislike_amount[post_id=${postId}]`).text(data.dislikes);
 
-                        if (data.is_liked){
+                        if (data.is_user_liked_this_post){
                             $(`.post_like_amount[post_id="${postId}"]`).addClass('post_liked');
                             $(`.post_dislike_amount[post_id="${postId}"]`).removeClass('post_disliked');
                         }
@@ -120,7 +120,7 @@
                         $(`.post_dislike_amount[post_id=${postId}]`).text(data.dislikes);
                         $(`.post_like_amount[post_id=${postId}]`).text(data.likes);
 
-                        if (data.is_disliked){
+                        if (data.is_user_disliked_this_post){
                             $(`.post_like_amount[post_id="${postId}"]`).removeClass('post_liked');
                             $(`.post_dislike_amount[post_id="${postId}"]`).addClass('post_disliked');
                         }

@@ -3,8 +3,8 @@
 from django.urls import path
 
 from post.views import (
-    PostListView, CreatePostView, like_post, dislike_post, check_estimation,
-    PostDetailView,
+    PostListView, CreatePostView, PostDetailView,
+    like_click_processing, dislike_click_processing, check_post_estimation,
 )
 
 
@@ -28,17 +28,17 @@ urlpatterns = [
     ),
     path(
         'like/',
-        like_post,
+        like_click_processing,
         name='like',
     ),
     path(
         'dislike/',
-        dislike_post,
+        dislike_click_processing,
         name='dislike',
     ),
     path(
         'check_estimation/',
-        check_estimation,
+        check_post_estimation,
         name='check_estimation',
     ),
 ]

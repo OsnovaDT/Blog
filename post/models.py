@@ -2,7 +2,6 @@
 
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.urls import reverse_lazy
 
 
 POST_STATUS = (
@@ -69,9 +68,6 @@ class Post(models.Model):
 
     def __str__(self):
         return str(self.title)[:40] + "... (" + str(self.author) + ")"
-
-    def get_absolute_url(self):
-        return reverse_lazy('post:all_posts')
 
     class Meta:
         """Metainformation about the model"""
