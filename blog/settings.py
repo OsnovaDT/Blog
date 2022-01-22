@@ -6,6 +6,7 @@ from pathlib import Path
 from django.urls import reverse_lazy
 from decouple import config
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
@@ -18,9 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts',
     'post',
     'user',
-    'accounts',
 ]
 
 DATABASES = {
@@ -102,7 +103,7 @@ TIME_ZONE = 'Europe/Moscow'
 
 USE_TZ = True
 
-### Internationalization ###
+### INTERNATIONALIZATION ###
 
 LANGUAGE_CODE = 'en-us'
 
