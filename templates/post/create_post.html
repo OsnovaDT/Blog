@@ -70,7 +70,6 @@
             </div>
 
             <input type="hidden" name="author" value="{{ user.id }}">
-            <input id="slug_input" type="hidden" name="slug">
 
             {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
@@ -84,14 +83,6 @@
             <div class="col-md-12" style="margin-top: 30px;">
                 <input class="submit_button" type="submit" value="Create" style="background-color: #15C6B9;">
             </div>
-
-            <script>
-                $('.submit_button').on('click', function(){
-                    let slug = $('input[name="title"]').val();
-                    slug = slug.slice(0, 10).toLowerCase();
-                    $('#slug_input').val(slug);
-                })
-            </script>
         </form>
     </div>
 {% endblock content %}
