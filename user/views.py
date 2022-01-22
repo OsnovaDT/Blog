@@ -1,3 +1,5 @@
+"""Views of user app"""
+
 from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
 
