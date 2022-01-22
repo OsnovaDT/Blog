@@ -4,6 +4,7 @@ from json import dumps
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -28,6 +29,14 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'post/create_post.html'
     fields = ('title', 'content', 'author', 'status')
+
+
+class PostDetailView(DetailView):
+    """Detail view for a post"""
+
+    model = Post
+    template_name = 'post/detail.html'
+    context_object_name = 'post'
 
 
 def get_post_with_user(request):
