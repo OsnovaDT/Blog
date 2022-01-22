@@ -3,13 +3,19 @@
 from django.urls import path
 
 from post.views import (
-    PostListView, CreatePostView, like_post, dislike_post, check_estimation
+    PostListView, CreatePostView, like_post, dislike_post, check_estimation,
+    PostDetailView,
 )
 
 
 app_name = 'post'
 
 urlpatterns = [
+    path(
+        '<int:pk>/',
+        PostDetailView.as_view(),
+        name='detail',
+    ),
     path(
         'all/',
         PostListView.as_view(),
@@ -34,5 +40,5 @@ urlpatterns = [
         'check_estimation/',
         check_estimation,
         name='check_estimation',
-    )
+    ),
 ]

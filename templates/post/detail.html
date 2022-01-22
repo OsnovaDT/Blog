@@ -4,44 +4,38 @@
 {% block title %}Все посты{% endblock title %}
 
 {% block content %}
-    {% for post in posts %}
-        {% ifequal post.status 'publish'  %}
-            <div class="col-md-8 offset-md-2 dark_div item">
-                {# Author and post's date #}
-                <div class="post_top_info">
-                    <span><a href="#">{{ post.author }}</a></span>
+    <div class="col-md-8 offset-md-2 dark_div item">
+        {# Author and post's date #}
+        <div class="post_top_info">
+            <span><a href="#">{{ post.author }}</a></span>
 
-                    <span class="post_published_time">
-                        {{ post.published_time }}
-                    </span>
-                </div>
+            <span class="post_published_time">
+                {{ post.published_time }}
+            </span>
+        </div>
 
-                {# Title #}
-                <a href="{% url 'post:detail' post.pk %}">
-                    <h2>{{ post.title }}</h2>
-                </a>
+        {# Title #}
+        <h2>{{ post.title }}</h2>
 
-                {# Content #}
-                <div class="post_content">
-                    <p>{{ post.content|truncatechars:250 }}</ps>
-                </div>
+        {# Content #}
+        <div class="post_content">
+            <p>{{ post.content|truncatechars:250 }}</ps>
+        </div>
 
-                <div class="post_estimation">
-                    {# Likes #}
-                    <img src="{% static 'images/like.png' %}" alt="Like" width="40px" height="40px"  class="image_link post_like" post_id="{{ post.id }}">
-                    <span class="post_like_amount" post_id="{{ post.id }}">
-                        {{ post.likes }}
-                    </span>
+        <div class="post_estimation">
+            {# Likes #}
+            <img src="{% static 'images/like.png' %}" alt="Like" width="40px" height="40px"  class="image_link post_like" post_id="{{ post.id }}">
+            <span class="post_like_amount" post_id="{{ post.id }}">
+                {{ post.likes }}
+            </span>
 
-                    {# Dislikes #}
-                    <img src="{% static 'images/dislike.png' %}" alt="Dislike" width="40px" height="40px" class="image_link post_dislike" post_id="{{ post.id }}"> 
-                    <span class="post_dislike_amount" post_id="{{ post.id }}">
-                        {{ post.dislikes }}
-                    </span>
-                </div>
-            </div>
-        {% endifequal %}
-    {% endfor %}
+            {# Dislikes #}
+            <img src="{% static 'images/dislike.png' %}" alt="Dislike" width="40px" height="40px" class="image_link post_dislike" post_id="{{ post.id }}"> 
+            <span class="post_dislike_amount" post_id="{{ post.id }}">
+                {{ post.dislikes }}
+            </span>
+        </div>
+    </div>
 
     <script>
         {% if user.is_authenticated %}
