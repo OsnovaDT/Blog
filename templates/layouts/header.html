@@ -22,7 +22,7 @@
 
                             <div id="user_dropdown_menu" class="dark_div">
                                 <div>
-                                    <p><a href="#">My profile</a></p>
+                                    <p><a href="{% url 'user:detail' user.pk %}">My profile</a></p>
 
                                     <p><a href="{% url 'post:create' %}">Create post</a></p>
 
@@ -35,7 +35,7 @@
 
                         {# User image #}
                         <div class="col-md-6">
-                            <a href="#">
+                            <a href="{% url 'user:detail' user.pk %}">
                                 {% if user.avatar %}
                                     <img src="{{ user.avatar.url }}">
                                 {% else %}
