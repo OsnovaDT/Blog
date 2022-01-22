@@ -72,6 +72,7 @@ a {
 
 .image_link:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 
 p {
@@ -98,14 +99,14 @@ p {
 .post_estimation {
   margin-top: 40px;
 }
-.post_likes_amount {
+.post_liked {
   color: #50cf50;
 }
-.post_dislikes {
-  margin-left: 20px;
-}
-.post_dislikes_amount {
+.post_disliked {
   color: #e74747;
+}
+.post_dislike {
+  margin-left: 20px;
 }
 
 *::selection {

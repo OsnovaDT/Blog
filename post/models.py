@@ -58,6 +58,20 @@ class Post(models.Model):
         default=0,
     )
 
+    liked_authors = models.ManyToManyField(
+        User,
+        related_name='liked_authors',
+        blank=True,
+        null=True,
+    )
+
+    disliked_authors = models.ManyToManyField(
+        User,
+        related_name='disliked_authors',
+        blank=True,
+        null=True,
+    )
+
     def __str__(self):
         return str(self.title)[:40] + "... (" + str(self.author) + ")"
 
