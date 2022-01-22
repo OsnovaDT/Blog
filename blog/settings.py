@@ -62,6 +62,22 @@ LOGIN_REDIRECT_URL = reverse_lazy('post:all_posts')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('post:all_posts')
 
+### EMAIL ###
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
 ### STATIC ###
 
 STATIC_URL = '/static/'
