@@ -1,0 +1,97 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}Post creation{% endblock title %}
+
+{% block content %}
+    <div class="col-md-8 offset-md-2 dark_div item">
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            {# Title #}
+            <div class="col-md-12">
+                <span class="simple_text dark_text">
+                    Title
+                </span>
+
+                <div class="form_input" style="margin-top: 8px;">
+                    {{ form.title }}
+                </div>
+
+                {% if form.title.errors %}
+                    {% for error in form.title.errors %}
+                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
+                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
+                            <em>{{ error }}</em>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            {# Content #}
+            <div class="col-md-12" style="margin-top: 30px;">
+                <span class="simple_text dark_text">
+                    Content
+                </span>
+
+                <div class="form_input" style="margin-top: 8px; height: 500px;">
+                    {{ form.content }}
+                </div>
+
+                {% if form.content.errors %}
+                    {% for error in form.content.errors %}
+                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
+                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
+                            <em>{{ error }}</em>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            {# Status #}
+            <div class="col-md-12" style="margin-top: 30px;">
+                <span class="simple_text dark_text">
+                    Status
+                </span>
+
+                <div class="form_input" style="margin-top: 8px;">
+                    {{ form.status }}
+                </div>
+
+                {% if form.status.errors %}
+                    {% for error in form.status.errors %}
+                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
+                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
+                            <em>{{ error }}</em>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <input type="hidden" name="author" value="{{ user.id }}">
+            <input id="slug_input" type="hidden" name="slug">
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="col-md-12" style="margin-top: 20px; color: #ee3030; font-size: 14px;">
+                        <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
+                        <em>{{ error }}</em>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col-md-12" style="margin-top: 30px;">
+                <input class="submit_button" type="submit" value="Create" style="background-color: #15C6B9;">
+            </div>
+
+            <script>
+                $('.submit_button').on('click', function(){
+                    let slug = $('input[name="title"]').val();
+                    slug = slug.slice(0, 10).toLowerCase();
+                    $('#slug_input').val(slug);
+                })
+            </script>
+        </form>
+    </div>
+{% endblock content %}

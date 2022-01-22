@@ -24,6 +24,8 @@
                                 <div>
                                     <p><a href="#">My profile</a></p>
 
+                                    <p><a href="{% url 'post:create' %}">Create post</a></p>
+
                                     <p><a href="#">Change password</a></p>
 
                                     <p><a href="{% url 'accounts:logout' %}">Logout</a></p>
@@ -44,7 +46,11 @@
                     </div>
                 </div>
             {% else %}
-                <div class="col-md-2 offset-md-8" style="text-align: right;">
+                <div class="col-md-2 offset-md-7" style="text-align: right;">
+                    <a href="{% url 'accounts:signup' %}">Signup</a>
+                </div>
+
+                <div class="col-md-1" style="text-align: right;">
                     <a href="{% url 'accounts:login' %}">Login</a>
                 </div>
             {% endif %}
