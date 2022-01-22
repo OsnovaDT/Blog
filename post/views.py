@@ -100,9 +100,6 @@ def like_click_processing(request: WSGIRequest) -> HttpResponse:
     user = get_user_from_request(request)
 
     if post:
-        post_likes = post.likes
-        post_dislikes = post.dislikes
-
         if user and (user != post.author):
             # If user delete like
             if user in post.liked_authors.all():
@@ -127,6 +124,9 @@ def like_click_processing(request: WSGIRequest) -> HttpResponse:
                 is_user_liked_this_post = True
 
             post.save()
+
+        post_likes = post.likes
+        post_dislikes = post.dislikes
     else:
         post_likes = 0
         post_dislikes = 0
@@ -151,9 +151,6 @@ def dislike_click_processing(request: WSGIRequest) -> HttpResponse:
     user = get_user_from_request(request)
 
     if post:
-        post_likes = post.likes
-        post_dislikes = post.dislikes
-
         if user and (user != post.author):
             # If user delete like
             if user in post.disliked_authors.all():
@@ -178,6 +175,9 @@ def dislike_click_processing(request: WSGIRequest) -> HttpResponse:
                 is_user_disliked_this_post = True
 
             post.save()
+
+        post_likes = post.likes
+        post_dislikes = post.dislikes
     else:
         post_likes = 0
         post_dislikes = 0
