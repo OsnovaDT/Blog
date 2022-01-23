@@ -6,7 +6,7 @@
         <span><a href="{% url 'user:detail' post.author.pk %}">{{ post.author }}</a></span>
 
         <span class="post_published_time">
-            {{ post.published_time }}
+            {{ post.published_time|date:"F d, Y" }} at {{ post.published_time|date:"g:i a" }}
         </span>
     </div>
 
