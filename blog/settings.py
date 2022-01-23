@@ -68,7 +68,10 @@ LOGOUT_REDIRECT_URL = reverse_lazy('post:all_posts')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10,
 }
 
 ### EMAIL ###

@@ -39,3 +39,9 @@ sudo docker-compose up --build
 # API pages
 ## User last login:
 ![User last login](https://github.com/OsnovaDT/Blog/blob/main/readme_images/api/last_login.png)
+
+## Likes for specified dates:
+![Likes for specified dates](https://github.com/OsnovaDT/Blog/blob/main/readme_images/api/likes.png)
+
+## Dislikes for specified dates:
+![Dislikes for specified dates](https://github.com/OsnovaDT/Blog/blob/main/readme_images/api/dislikes.png)

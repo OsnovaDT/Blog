@@ -12,6 +12,38 @@ POST_STATUS = (
 User = get_user_model()
 
 
+class LikeDates(models.Model):
+    """Post's likes dates"""
+
+    user_id = models.PositiveIntegerField()
+    post_id = models.PositiveIntegerField()
+    like_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return "post: " + str(self.post_id) + " | user: " + str(self.user_id)
+
+    class Meta:
+        """Metainformation about the model"""
+
+        unique_together = ('user_id', 'post_id')
+
+
+class DislikeDates(models.Model):
+    """Post's dislikes dates"""
+
+    user_id = models.PositiveIntegerField()
+    post_id = models.PositiveIntegerField()
+    dislike_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return "post: " + str(self.post_id) + " | user: " + str(self.user_id)
+
+    class Meta:
+        """Metainformation about the model"""
+
+        unique_together = ('user_id', 'post_id')
+
+
 class Post(models.Model):
     """Blog's post"""
 

@@ -1,5 +1,6 @@
 """Views of post app"""
 
+from datetime import datetime
 from json import dumps
 
 from django.views.decorators.csrf import csrf_exempt
@@ -12,8 +13,36 @@ from django.contrib.auth.models import User
 from django.core.handlers.wsgi import WSGIRequest
 from django.http.response import HttpResponse
 from django.urls import reverse_lazy
+from rest_framework.generics import ListAPIView
 
-from post.models import Post
+from post.serializers import (
+    PostLikeDatesSerializer, PostDislikeDatesSerializer
+)
+from post.models import Post, LikeDates, DislikeDates
+
+
+class PostLikeDatesApi(ListAPIView):
+    serializer_class = PostLikeDatesSerializer
+
+    def get_queryset(self):
+        date_from = self.request.query_params.get('date_from')
+        date_to = self.request.query_params.get('date_to')
+
+        return LikeDates.objects.filter(
+            like_date__range=(date_from, date_to)
+        )
+
+
+class PostDislikeDatesApi(ListAPIView):
+    serializer_class = PostDislikeDatesSerializer
+
+    def get_queryset(self):
+        date_from = self.request.query_params.get('date_from')
+        date_to = self.request.query_params.get('date_to')
+
+        return DislikeDates.objects.filter(
+            dislike_date__range=(date_from, date_to)
+        )
 
 
 class PostListView(ListView):
@@ -99,12 +128,20 @@ def like_click_processing(request: WSGIRequest) -> HttpResponse:
     post = get_post_from_request(request)
     user = get_user_from_request(request)
 
+    # TODO: Refactoring
     if post:
         if user and (user != post.author):
             # If user delete like
             if user in post.liked_authors.all():
                 post.likes -= 1
                 post.liked_authors.remove(user)
+
+                if LikeDates.objects.filter(
+                        user_id=user.id, post_id=post.id).exists():
+                    post_like_date = LikeDates.objects.get(
+                        user_id=user.id, post_id=post.id
+                    )
+                    post_like_date.delete()
 
             # If user change dislike to like
             elif user in post.disliked_authors.all():
@@ -114,12 +151,40 @@ def like_click_processing(request: WSGIRequest) -> HttpResponse:
                 post.liked_authors.add(user)
                 post.disliked_authors.remove(user)
 
+                if LikeDates.objects.filter(
+                        user_id=user.id, post_id=post.id).exists():
+                    post_like_date = LikeDates.objects.get(
+                        user_id=user.id, post_id=post.id
+                    )
+                    post_like_date.like_date = datetime.now()
+                else:
+                    post_like_date = LikeDates.objects.create(
+                        user_id=user.id,
+                        post_id=post.id,
+                        like_date=datetime.now(),
+                    )
+                post_like_date.save()
+
+                if DislikeDates.objects.filter(
+                        user_id=user.id, post_id=post.id).exists():
+                    post_dislike_date = DislikeDates.objects.get(
+                        user_id=user.id, post_id=post.id
+                    )
+                    post_dislike_date.delete()
+
                 is_user_liked_this_post = True
 
             # If user add like
             else:
                 post.likes += 1
                 post.liked_authors.add(user)
+
+                post_like_date = LikeDates.objects.create(
+                    user_id=user.id,
+                    post_id=post.id,
+                    like_date=datetime.now(),
+                )
+                post_like_date.save()
 
                 is_user_liked_this_post = True
 
@@ -150,12 +215,20 @@ def dislike_click_processing(request: WSGIRequest) -> HttpResponse:
     post = get_post_from_request(request)
     user = get_user_from_request(request)
 
+    # TODO: Refactoring
     if post:
         if user and (user != post.author):
             # If user delete like
             if user in post.disliked_authors.all():
                 post.dislikes -= 1
                 post.disliked_authors.remove(user)
+
+                if DislikeDates.objects.filter(
+                        user_id=user.id, post_id=post.id).exists():
+                    post_dislike_date = DislikeDates.objects.get(
+                        user_id=user.id, post_id=post.id
+                    )
+                    post_dislike_date.delete()
 
             # If user change like to dislike
             elif user in post.liked_authors.all():
@@ -167,12 +240,40 @@ def dislike_click_processing(request: WSGIRequest) -> HttpResponse:
 
                 is_user_disliked_this_post = True
 
+                if DislikeDates.objects.filter(
+                        user_id=user.id, post_id=post.id).exists():
+                    post_dislike_date = DislikeDates.objects.get(
+                        user_id=user.id, post_id=post.id
+                    )
+                    post_dislike_date.dislike_date = datetime.now()
+                else:
+                    post_dislike_date = DislikeDates.objects.create(
+                        user_id=user.id,
+                        post_id=post.id,
+                        dislike_date=datetime.now(),
+                    )
+                post_dislike_date.save()
+
+                if LikeDates.objects.filter(
+                        user_id=user.id, post_id=post.id).exists():
+                    post_like_date = LikeDates.objects.get(
+                        user_id=user.id, post_id=post.id
+                    )
+                    post_like_date.delete()
+
             # If user add dislike
             else:
                 post.dislikes += 1
                 post.disliked_authors.add(user)
 
                 is_user_disliked_this_post = True
+
+                post_dislike_date = DislikeDates.objects.create(
+                    user_id=user.id,
+                    post_id=post.id,
+                    dislike_date=datetime.now(),
+                )
+                post_dislike_date.save()
 
             post.save()
 
