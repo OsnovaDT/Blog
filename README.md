@@ -1,10 +1,10 @@
 # These actions will help you deploy the project:
 ## 1.   Create a file **.env** in your project (next to manage.py)
 ## 2.   Add these constants to it:
-* SECRET_KEY
-* EMAIL_HOST_USER
-* EMAIL_HOST_PASSWORD
-* DEFAULT_FROM_EMAIL
+* SECRET_KEY="<your_secret_key>"
+* EMAIL_HOST_USER="<your_email_host_user>"
+* EMAIL_HOST_PASSWORD="<your_email_host_password>"
+* DEFAULT_FROM_EMAIL="<your_default_from_email>"
 ## 3.   Make this command in the first console window:
 sudo docker-compose up --build
 ## 4.   Make these commands in the second console window:
