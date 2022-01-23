@@ -3,9 +3,5 @@
 {% block title %}Message successfully sent{% endblock title %}
 
 {% block content %}
-<div class="col-md-6 offset-md-3 dark_div item">
-    <h2 class="simple_text dark_text">
-        Message successfully sent. Please check your inbox.
-    </h2>
-</div>
+    {% include 'for_including/success.html' with TEXT='Message successfully sent. Please check your inbox.' %}
 {% endblock content %}

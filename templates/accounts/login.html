@@ -19,10 +19,7 @@
                 </div>
                 {% if form.username.errors %}
                     {% for error in form.username.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
+                        {% include 'for_including/error.html' %}
                     {% endfor %}
                 {% endif %}
             </div>
@@ -39,10 +36,7 @@
                 </div>
                 {% if form.password.errors %}
                     {% for error in form.password.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
+                        {% include 'for_including/error.html' %}
                     {% endfor %}
                 {% endif %}
             </div>
@@ -50,10 +44,7 @@
 
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
-                <div class="col-md-12" style="margin-top: 20px; color: #ee3030; font-size: 14px;">
-                    <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                    <em>{{ error }}</em>
-                </div>
+                {% include 'for_including/error.html' %}
             {% endfor %}
         {% endif %}
 
