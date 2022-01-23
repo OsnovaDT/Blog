@@ -1,0 +1,5 @@
+{% if FORM.non_field_errors %}
+    {% for error in FORM.non_field_errors %}
+        {% include 'for_including/form/error.html' with ERROR=error %}
+    {% endfor %}
+{% endif %}

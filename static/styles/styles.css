@@ -128,6 +128,14 @@ input {
   width: 100%;
 }
 
+.form_input {
+  margin-top: 20px;
+}
+
+.not_first_form_field {
+  margin-top: 20px;
+}
+
 select {
   padding: 10px;
 }
@@ -137,6 +145,10 @@ textarea {
   padding: 15px;
   width: 100%;
   height: 100%;
+}
+
+.submit_button_div {
+  margin-top: 30px;
 }
 
 .submit_button {
@@ -164,6 +176,12 @@ textarea {
   text-decoration: none;
   color: #FFF !important;
   background-color: #15C6B9;
+}
+
+.error {
+  color: #ee3030;
+  font-size: 14px;
+  margin-top: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */
