@@ -8,45 +8,13 @@
     <form method="post" novalidate>
         {% csrf_token %}
 
-        <div class="col-md-12">
-            <div style=" width: 350px; max-width: 350px;">
-                {# Title #}
-                <span class="simple_text dark_text">
-                    Login
-                </span>
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.username }}
-                </div>
-                {% if form.username.errors %}
-                    {% for error in form.username.errors %}
-                        {% include 'for_including/error.html' %}
-                    {% endfor %}
-                {% endif %}
-            </div>
+        {% include 'for_including/field.html' with FIELD_TITLE='Login' FIELD=form.username %}
+
+        <div class="not_first_form_field">
+            {% include 'for_including/field.html' with FIELD_TITLE='Password' FIELD=form.password %}
         </div>
 
-        <div class="col-md-12" style="margin-top: 30px;">
-            <div style=" width: 350px; max-width: 350px;">
-                {# Title #}
-                <span class="simple_text dark_text">
-                    Password
-                </span>
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.password }}
-                </div>
-                {% if form.password.errors %}
-                    {% for error in form.password.errors %}
-                        {% include 'for_including/error.html' %}
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-
-        {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-                {% include 'for_including/error.html' %}
-            {% endfor %}
-        {% endif %}
+        {% include 'for_including/form_errors.html' with FORM=form %}
 
         <div class="col-md-12" style="margin-top: 30px;">
             <div class="row">

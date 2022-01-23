@@ -9,78 +9,19 @@
         <form method="post" novalidate>
             {% csrf_token %}
 
-            {# Login #}
-            <div class="col-md-12">
-                <span class="simple_text dark_text">
-                    Login
-                </span>
+            {% include 'for_including/field.html' with FIELD_TITLE='Login' FIELD=form.username %}
 
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.username }}
-                </div>
-
-                {% if form.username.errors %}
-                    {% for error in form.username.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
-                    {% endfor %}
-                {% endif %}
+            <div class="not_first_form_field">
+                {% include 'for_including/field.html' with FIELD_TITLE='Password' FIELD=form.password1 %}
             </div>
 
-            {# Password 1 #}
-            <div class="col-md-12" style="margin-top: 30px;">
-                <span class="simple_text dark_text">
-                    Password
-                </span>
-
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.password1 }}
-                </div>
-
-                {% if form.password1.errors %}
-                    {% for error in form.password1.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
-                    {% endfor %}
-                {% endif %}
+            <div class="not_first_form_field">
+                {% include 'for_including/field.html' with FIELD_TITLE='Password confirmation' FIELD=form.password2 %}
             </div>
 
-            {# Password 2 #}
-            <div class="col-md-12" style="margin-top: 30px;">
-                <span class="simple_text dark_text">
-                    Password confirmation
-                </span>
+            {% include 'for_including/form_errors.html' with FORM=form %}
 
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.password2 }}
-                </div>
-
-                {% if form.password2.errors %}
-                    {% for error in form.password2.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-
-            {% if form.non_field_errors %}
-                {% for error in form.non_field_errors %}
-                    <div class="col-md-12" style="margin-top: 20px; color: #ee3030; font-size: 14px;">
-                        <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                        <em>{{ error }}</em>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-            <div class="col-md-12" style="margin-top: 30px;">
-                <input class="submit_button" type="submit" value="Signup">
-            </div>
+            {% include 'for_including/submit_button.html' %}
         </form>
     </div>
 {% endblock content %}

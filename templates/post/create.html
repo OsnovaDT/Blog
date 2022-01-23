@@ -9,76 +9,19 @@
         <form method="post" novalidate>
             {% csrf_token %}
 
-            {# Title #}
-            <div class="col-md-12">
-                <span class="simple_text dark_text">
-                    Title
-                </span>
+            {% include 'for_including/field.html' with FIELD_TITLE='Title' FIELD=form.title %}
 
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.title }}
-                </div>
-
-                {% if form.title.errors %}
-                    {% for error in form.title.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
-                    {% endfor %}
-                {% endif %}
+            <div class="not_first_form_field">
+                {% include 'for_including/field.html' with FIELD_TITLE='Content' FIELD=form.content %}
             </div>
 
-            {# Content #}
-            <div class="col-md-12" style="margin-top: 30px;">
-                <span class="simple_text dark_text">
-                    Content
-                </span>
-
-                <div class="form_input" style="margin-top: 8px; height: 500px;">
-                    {{ form.content }}
-                </div>
-
-                {% if form.content.errors %}
-                    {% for error in form.content.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-
-            {# Status #}
-            <div class="col-md-12" style="margin-top: 30px;">
-                <span class="simple_text dark_text">
-                    Status
-                </span>
-
-                <div class="form_input" style="margin-top: 8px;">
-                    {{ form.status }}
-                </div>
-
-                {% if form.status.errors %}
-                    {% for error in form.status.errors %}
-                        <div class="" style="color: #ee3030; font-size: 14px; margin-top: 10px;">
-                            <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                            <em>{{ error }}</em>
-                        </div>
-                    {% endfor %}
-                {% endif %}
+            <div class="not_first_form_field">
+                {% include 'for_including/field.html' with FIELD_TITLE='Status' FIELD=form.status %}
             </div>
 
             <input type="hidden" name="author" value="{{ user.id }}">
 
-            {% if form.non_field_errors %}
-                {% for error in form.non_field_errors %}
-                    <div class="col-md-12" style="margin-top: 20px; color: #ee3030; font-size: 14px;">
-                        <img src="{% static 'images/error.svg' %}" width="12px" height="12px">
-                        <em>{{ error }}</em>
-                    </div>
-                {% endfor %}
-            {% endif %}
+            {% include 'for_including/form_errors.html' with FORM=form %}
 
             <div class="col-md-12" style="margin-top: 30px;">
                 <input class="submit_button" type="submit" value="Create" style="background-color: #15C6B9;">
