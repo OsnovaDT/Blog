@@ -2,6 +2,9 @@
 
 from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
+from rest_framework.generics import ListCreateAPIView
+
+from user.serializers import UserLastLoginSerializer
 
 
 class UserDetailView(DetailView):
@@ -9,3 +12,10 @@ class UserDetailView(DetailView):
 
     model = User
     template_name = 'user/detail.html'
+
+
+class UserLastLoginApi(ListCreateAPIView):
+    """Api for user last login"""
+
+    queryset = User.objects.all()
+    serializer_class = UserLastLoginSerializer

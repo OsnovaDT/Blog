@@ -11,6 +11,11 @@ urlpatterns = [
     path('post/', include('post.urls')),
     path('accounts/', include('accounts.urls')),
     path('user/', include('user.urls')),
+
+    path(
+        'api-auth/',
+        include('rest_framework.urls', namespace='rest_framework')
+    ),
 ]
 
 urlpatterns += static(

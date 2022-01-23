@@ -4,3 +4,6 @@ psycopg2>=2.8
 
 # For variables of the environment
 python-decouple>=3.3
+
+# DRF
+djangorestframework>=3.12.1
