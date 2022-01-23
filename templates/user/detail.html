@@ -5,5 +5,6 @@
 {% block content %}
     <div class="col-md-8 offset-md-2 dark_div item">
         <h2>{{ user.username }}</h2>
+        <span>Date of registration: {{ user.date_joined|date:"d.m.Y" }}</span>
     </div>
 {% endblock content %}
