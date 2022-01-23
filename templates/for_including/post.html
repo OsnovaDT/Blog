@@ -3,7 +3,7 @@
 <div class="col-md-8 offset-md-2 dark_div item">
     {# Author and post's date #}
     <div class="post_top_info">
-        <span><a href="#">{{ post.author }}</a></span>
+        <span><a href="{% url 'user:detail' post.author.pk %}">{{ post.author }}</a></span>
 
         <span class="post_published_time">
             {{ post.published_time }}
