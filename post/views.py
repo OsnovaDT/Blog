@@ -21,7 +21,7 @@ class PostListView(ListView):
 
     model = Post
     paginate_by = 10
-    template_name = 'post/all_posts.html'
+    template_name = 'post/all.html'
     context_object_name = 'posts'
 
 
@@ -29,7 +29,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     """View for creating post"""
 
     model = Post
-    template_name = 'post/create_post.html'
+    template_name = 'post/create.html'
     fields = ('title', 'content', 'author', 'status')
     success_url = reverse_lazy('post:all_posts')
 

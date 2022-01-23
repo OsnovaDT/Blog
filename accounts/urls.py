@@ -40,10 +40,10 @@ urlpatterns = [
         PasswordResetView.as_view(
             template_name='accounts/password_reset/password_reset.html',
             subject_template_name=\
-                'accounts/password_reset/message_for_user_subject.txt',
+                'accounts/password_reset/message_subject.txt',
             email_template_name=\
-                'accounts/password_reset/message_for_user_body.html',
-            success_url=reverse_lazy('accounts:message_for_user_sent'),
+                'accounts/password_reset/message_body.html',
+            success_url=reverse_lazy('accounts:message_sent'),
         ),
         name="password_reset"
     ),
@@ -51,19 +51,19 @@ urlpatterns = [
     path(
         'password_reset/message_sent/',
         PasswordResetDoneView.as_view(
-            template_name='accounts/password_reset/message_for_user_sent.html',
+            template_name='accounts/password_reset/message_sent.html',
             extra_context={'is_message_sent': True},
         ),
-        name="message_for_user_sent"
+        name="message_sent"
     ),
 
     path(
         'password_reset/<uidb64>/<token>/',
         PasswordResetConfirmView.as_view(
-            template_name='accounts/password_reset/set_password.html',
+            template_name='accounts/password_reset/set_new_password.html',
             success_url=reverse_lazy('accounts:password_successfully_reset'),
         ),
-        name="set_password"
+        name="set_new_password"
     ),
 
     path(
