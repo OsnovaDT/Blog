@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'accounts',
     'post',
     'user',
+    'rest_framework',
 ]
 
 DATABASES = {
@@ -62,6 +63,13 @@ LOGIN_URL = reverse_lazy('accounts:login')
 LOGIN_REDIRECT_URL = reverse_lazy('post:all_posts')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('post:all_posts')
+
+### DRF ###
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 ### EMAIL ###
 

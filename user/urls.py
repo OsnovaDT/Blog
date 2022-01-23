@@ -2,7 +2,7 @@
 
 from django.urls import path
 
-from user.views import UserDetailView
+from user.views import UserDetailView, UserLastLoginApi
 
 
 app_name = 'user'
@@ -13,4 +13,11 @@ urlpatterns = [
         UserDetailView.as_view(),
         name='detail',
     ),
+
+    # API
+    path(
+        'api/last_login/',
+        UserLastLoginApi.as_view(),
+        name='api_user_last_login',
+    )
 ]

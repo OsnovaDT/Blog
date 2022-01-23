@@ -11,7 +11,7 @@ sudo docker-compose up --build
 * docker-compose exec blog_web python manage.py makemigrations
 * docker-compose exec blog_web python manage.py migrate
 
-# Pages
+# Simple pages
 ## Page when user is not authenticated:
 ![Password change](https://github.com/OsnovaDT/Blog/blob/main/readme_images/user_is_not_authenticated.png)
 
@@ -35,3 +35,7 @@ sudo docker-compose up --build
 
 ## Password change:
 ![Password change](https://github.com/OsnovaDT/Blog/blob/main/readme_images/password_change.png)
+
+# API pages
+## User last login:
+![User last login](https://github.com/OsnovaDT/Blog/blob/main/readme_images/api/last_login.png)
