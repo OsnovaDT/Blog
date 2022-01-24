@@ -7,4 +7,18 @@
         <h2>{{ user.username }}</h2>
         <span>Date of registration: {{ user.date_joined|date:"d.m.Y" }}</span>
     </div>
+
+    <div class="col-md-8 offset-md-2 user_post_title">
+        <h2>My posts</h2>
+    </div>
+    {% for post in posts %}
+        {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
+    {% endfor %}
+
+    <div class="col-md-8 offset-md-2 user_post_title">
+        <h2>My drafts</h2>
+    </div>
+    {% for post in drafts %}
+        {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
+    {% endfor %}
 {% endblock content %}
