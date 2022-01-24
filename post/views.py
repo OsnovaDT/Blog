@@ -60,7 +60,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'post/create.html'
     fields = ('title', 'content', 'author', 'status')
-    success_url = reverse_lazy('post:all_posts')
+    success_url = reverse_lazy('post:all')
 
 
 class PostDetailView(DetailView):

@@ -20,7 +20,7 @@ urlpatterns = [
     path(
         'all/',
         PostListView.as_view(),
-        name='all_posts'
+        name='all'
     ),
     path(
         'create/',

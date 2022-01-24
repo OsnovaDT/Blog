@@ -62,9 +62,9 @@ TEMPLATES = [
 
 LOGIN_URL = reverse_lazy('accounts:login')
 
-LOGIN_REDIRECT_URL = reverse_lazy('post:all_posts')
+LOGIN_REDIRECT_URL = reverse_lazy('post:all')
 
-LOGOUT_REDIRECT_URL = reverse_lazy('post:all_posts')
+LOGOUT_REDIRECT_URL = reverse_lazy('post:all')
 
 ### DRF ###
 
