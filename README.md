@@ -36,6 +36,9 @@ sudo docker-compose up --build
 ## Password change:
 ![Password change](https://github.com/OsnovaDT/Blog/blob/main/readme_images/password_change.png)
 
+## User detail page:
+![User detail page](https://github.com/OsnovaDT/Blog/blob/main/readme_images/user_page.png)
+
 # API pages
 ## User last login:
 ![User last login](https://github.com/OsnovaDT/Blog/blob/main/readme_images/api/last_login.png)
