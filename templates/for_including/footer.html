@@ -1,12 +1,10 @@
-{% load static %}
-
-<footer class="personal_account__footer">
+<footer>
     <div class="container">
         <div class="row">
             {# Home page link #}
-            <div class="col-md-2 right_link">
-                <a href="{% url 'post:all' %}" class="blue_link">
-                    Home
+            <div class="col-md-2">
+                <a href="{% url 'post:all' %}">
+                    All posts in a row
                 </a>
             </div>
 
@@ -15,7 +13,7 @@
                 {% if user.is_authenticated %}
                     <a href="{% url 'user:detail' user.pk %}">{{ user.username }}</a>
                 {% else %}
-                    <a href="{% url 'accounts:login' %}">{{ Login }}</a>
+                    <a href="{% url 'accounts:login' %}">Login</a>
                 {% endif %}
             </div>
         </div>
