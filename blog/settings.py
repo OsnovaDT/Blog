@@ -2,6 +2,7 @@
 
 from os.path import join
 from pathlib import Path
+from datetime import timedelta
 
 from django.urls import reverse_lazy
 from decouple import config
@@ -23,12 +24,13 @@ INSTALLED_APPS = [
     'post',
     'user',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3_2',
+        'NAME': BASE_DIR / 'db.sqlite3_3',
     }
 }
 
@@ -71,7 +73,18 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
     ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'PAGE_SIZE': 10,
+}
+
+SIMPLE_JWT = {
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+    'ROTATE_REFRESH_TOKENS': True,
 }
 
 ### EMAIL ###
