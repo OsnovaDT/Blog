@@ -184,4 +184,17 @@ textarea {
   margin-top: 20px;
 }
 
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  border-top: 5px solid #8f0097;
+  padding: 20px;
+}
+
 /*# sourceMappingURL=styles.css.map */

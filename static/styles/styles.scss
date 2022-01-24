@@ -208,3 +208,25 @@ textarea{
     font-size: 14px;
     margin-top: 20px;
 }
+
+// Footer
+// footer{
+//     border-top: 5px solid #8f0097;
+//     padding: 20px;
+//     position: absolute;
+//     bottom: 0;
+//     width: 100%;
+// }
+
+body{
+    height:100vh;
+    margin:0;
+    display:flex; 
+    flex-direction:column; 
+}
+
+footer{
+    margin-top:auto; 
+    border-top: 5px solid #8f0097;
+    padding: 20px;
+}

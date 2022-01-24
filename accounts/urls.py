@@ -29,7 +29,7 @@ urlpatterns = [
         'change_password/',
         PasswordChangeView.as_view(
             template_name='accounts/change_password.html',
-            success_url=reverse_lazy('post:all_posts'),
+            success_url=reverse_lazy('post:all'),
         ),
         name='password_change'
     ),
