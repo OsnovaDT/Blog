@@ -3,11 +3,15 @@
 {% block title %}All publications in a row{% endblock title %}
 
 {% block content %}
-    {% for post in posts %}
-        {% ifequal post.status 'publish'  %}
-            {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
-        {% endifequal %}
-    {% endfor %}
+    {% if posts %}
+        {% for post in posts %}
+            {% ifequal post.status 'publish'  %}
+                {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
+            {% endifequal %}
+        {% endfor %}
+    {% else %}
+        {% include 'for_including/success.html' with TEXT="There is not a single post yet" %}
+    {% endif %}
 
     {% include 'for_including/post_script.html' %}
 {% endblock content %}
