@@ -15,53 +15,43 @@ User = get_user_model()
 class LikeDates(models.Model):
     """Dates of likes"""
 
-    like_date = models.DateField(
+    date = models.DateField(
         auto_now_add=True,
     )
 
-    user_id = models.PositiveIntegerField(
-        editable=False,
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
     )
 
-    post_id = models.PositiveIntegerField(
-        editable=False,
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
         return str(self.like_date)
 
-    class Meta:
-        """Metainformation about LikeDates model"""
-
-        unique_together = (
-            'user_id', 'post_id',
-        )
-
 
 class DislikeDates(models.Model):
     """Dates of dislikes"""
 
-    dislike_date = models.DateField(
+    date = models.DateField(
         auto_now_add=True
     )
 
-    user_id = models.PositiveIntegerField(
-        editable=False,
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
     )
 
-    post_id = models.PositiveIntegerField(
-        editable=False,
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
         return str(self.dislike_date)
-
-    class Meta:
-        """Metainformation about DislikeDates model"""
-
-        unique_together = (
-            'user_id', 'post_id',
-        )
 
 
 class Post(models.Model):

@@ -152,12 +152,11 @@ def process_click_of_like(request: WSGIRequest) -> HttpResponse:
                 post.likes -= 1
                 post.liked_authors.remove(user)
 
-                if LikeDates.objects.filter(
-                        user_id=user.id, post_id=post.id).exists():
-                    post_like_date = LikeDates.objects.get(
-                        user_id=user.id, post_id=post.id
+                if LikeDates.objects.filter(user=user, post=post).exists():
+                    like_date = LikeDates.objects.get(
+                        user=user, post=post
                     )
-                    post_like_date.delete()
+                    like_date.delete()
 
             # If user change dislike to like
             elif user in post.disliked_authors.all():
@@ -167,26 +166,22 @@ def process_click_of_like(request: WSGIRequest) -> HttpResponse:
                 post.liked_authors.add(user)
                 post.disliked_authors.remove(user)
 
-                if LikeDates.objects.filter(
-                        user_id=user.id, post_id=post.id).exists():
-                    post_like_date = LikeDates.objects.get(
-                        user_id=user.id, post_id=post.id
+                if LikeDates.objects.filter(user=user, post=post).exists():
+                    like_date = LikeDates.objects.get(
+                        user=user, post=post
                     )
-                    post_like_date.like_date = datetime.now()
+                    like_date.date = datetime.now()
                 else:
-                    post_like_date = LikeDates.objects.create(
-                        user_id=user.id,
-                        post_id=post.id,
-                        like_date=datetime.now(),
+                    like_date = LikeDates.objects.create(
+                        user=user, post=post, date=datetime.now(),
                     )
-                post_like_date.save()
+                like_date.save()
 
-                if DislikeDates.objects.filter(
-                        user_id=user.id, post_id=post.id).exists():
-                    post_dislike_date = DislikeDates.objects.get(
-                        user_id=user.id, post_id=post.id
+                if DislikeDates.objects.filter(user=user, post=post).exists():
+                    dislike_date = DislikeDates.objects.get(
+                        user=user, post=post
                     )
-                    post_dislike_date.delete()
+                    dislike_date.delete()
 
                 is_user_liked_this_post = True
 
@@ -195,12 +190,10 @@ def process_click_of_like(request: WSGIRequest) -> HttpResponse:
                 post.likes += 1
                 post.liked_authors.add(user)
 
-                post_like_date = LikeDates.objects.create(
-                    user_id=user.id,
-                    post_id=post.id,
-                    like_date=datetime.now(),
+                like_date = LikeDates.objects.create(
+                    user=user, post=post, date=datetime.now(),
                 )
-                post_like_date.save()
+                like_date.save()
 
                 is_user_liked_this_post = True
 
@@ -239,12 +232,11 @@ def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
                 post.dislikes -= 1
                 post.disliked_authors.remove(user)
 
-                if DislikeDates.objects.filter(
-                        user_id=user.id, post_id=post.id).exists():
-                    post_dislike_date = DislikeDates.objects.get(
-                        user_id=user.id, post_id=post.id
+                if DislikeDates.objects.filter(user=user, post=post).exists():
+                    dislike_date = DislikeDates.objects.get(
+                        user=user, post=post
                     )
-                    post_dislike_date.delete()
+                    dislike_date.delete()
 
             # If user change like to dislike
             elif user in post.liked_authors.all():
@@ -256,26 +248,22 @@ def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
 
                 is_user_disliked_this_post = True
 
-                if DislikeDates.objects.filter(
-                        user_id=user.id, post_id=post.id).exists():
-                    post_dislike_date = DislikeDates.objects.get(
-                        user_id=user.id, post_id=post.id
+                if DislikeDates.objects.filter(user=user, post=post).exists():
+                    dislike_date = DislikeDates.objects.get(
+                        user=user, post=post
                     )
-                    post_dislike_date.dislike_date = datetime.now()
+                    dislike_date.date = datetime.now()
                 else:
-                    post_dislike_date = DislikeDates.objects.create(
-                        user_id=user.id,
-                        post_id=post.id,
-                        dislike_date=datetime.now(),
+                    dislike_date = DislikeDates.objects.create(
+                        user=user, post=post, date=datetime.now(),
                     )
-                post_dislike_date.save()
+                dislike_date.save()
 
-                if LikeDates.objects.filter(
-                        user_id=user.id, post_id=post.id).exists():
-                    post_like_date = LikeDates.objects.get(
-                        user_id=user.id, post_id=post.id
+                if LikeDates.objects.filter(user=user, post=post).exists():
+                    like_date = LikeDates.objects.get(
+                        user=user, post=post
                     )
-                    post_like_date.delete()
+                    like_date.delete()
 
             # If user add dislike
             else:
@@ -284,12 +272,10 @@ def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
 
                 is_user_disliked_this_post = True
 
-                post_dislike_date = DislikeDates.objects.create(
-                    user_id=user.id,
-                    post_id=post.id,
-                    dislike_date=datetime.now(),
+                dislike_date = DislikeDates.objects.create(
+                    user=user, post=post, date=datetime.now(),
                 )
-                post_dislike_date.save()
+                dislike_date.save()
 
             post.save()
 
