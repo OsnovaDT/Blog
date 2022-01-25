@@ -20,9 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Custom apps
     'accounts',
     'post',
     'user',
+
+    # DRF
     'rest_framework',
     'rest_framework_simplejwt',
 ]
@@ -69,21 +72,27 @@ LOGOUT_REDIRECT_URL = reverse_lazy('post:all')
 ### DRF ###
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': \
+        'rest_framework.pagination.PageNumberPagination',
+
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
     ],
+
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
     'PAGE_SIZE': 10,
 }
 
 SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+
     'ROTATE_REFRESH_TOKENS': True,
 }
 
