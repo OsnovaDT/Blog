@@ -19,5 +19,5 @@ urlpatterns = [
         'api/last_login/',
         UserLastLoginApi.as_view(),
         name='api_user_last_login',
-    )
+    ),
 ]
