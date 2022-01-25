@@ -12,17 +12,18 @@ class UserDetailView(DetailView):
     """View for user's detail page"""
 
     model = User
+
     template_name = 'user/detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context['posts'] = Post.objects.filter(
-            author=self.object, status='publish'
+            author=self.object, status='publish',
         )
 
         context['drafts'] = Post.objects.filter(
-            author=self.object, status='draft'
+            author=self.object, status='draft',
         )
 
         return context
