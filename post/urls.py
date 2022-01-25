@@ -3,8 +3,8 @@
 from django.urls import path
 
 from post.views import (
-    PostListView, CreatePostView, PostDetailView,
-    like_click_processing, dislike_click_processing, check_post_estimation,
+    PostDetailView, PostListView, PostCreateView,
+    process_click_of_like, process_click_of_dislike, check_post_estimation,
     PostLikeDatesApi, PostDislikeDatesApi,
 )
 
@@ -17,38 +17,47 @@ urlpatterns = [
         PostDetailView.as_view(),
         name='detail',
     ),
+
     path(
         'all/',
         PostListView.as_view(),
-        name='all'
+        name='all',
     ),
+
     path(
         'create/',
-        CreatePostView.as_view(),
+        PostCreateView.as_view(),
         name='create',
     ),
+
+    # Likes and dislikes (Estimation)
     path(
         'like/',
-        like_click_processing,
+        process_click_of_like,
         name='like',
     ),
+
     path(
         'dislike/',
-        dislike_click_processing,
+        process_click_of_dislike,
         name='dislike',
     ),
+
     path(
         'check_estimation/',
         check_post_estimation,
         name='check_estimation',
     ),
+
+    # API
     path(
-        'api/likes/',
+        'api/likes/dates/',
         PostLikeDatesApi.as_view(),
         name='api_likes',
     ),
+
     path(
-        'api/dislikes/',
+        'api/dislikes/dates/',
         PostDislikeDatesApi.as_view(),
         name='api_dislikes',
     ),
