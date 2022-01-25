@@ -8,13 +8,13 @@ from post.models import Post, LikeDates, DislikeDates
 class LikeDatesAdmin(admin.ModelAdmin):
     """Admin panel for LikeDates model"""
 
-    list_display = ('user_id', 'post_id', 'like_date',)
+    list_display = ('like_date', 'user_id', 'post_id',)
 
 
 class DislikeDatesAdmin(admin.ModelAdmin):
     """Admin panel for DislikeDates model"""
 
-    list_display = ('user_id', 'post_id', 'dislike_date',)
+    list_display = ('dislike_date', 'user_id', 'post_id',)
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -25,14 +25,16 @@ class PostAdmin(admin.ModelAdmin):
         'published_time', 'updated_time',
     )
 
-    list_filter = ('published_time', 'status',)
+    list_filter = (
+        'published_time', 'status',
+    )
 
 
-MODEL_AND_ADMIN_MODEL = {
+MODEL_WITH_ADMIN_MODEL = {
     LikeDates: LikeDatesAdmin,
     DislikeDates: DislikeDatesAdmin,
     Post: PostAdmin,
 }
 
-for model, admin_model in MODEL_AND_ADMIN_MODEL.items():
+for model, admin_model in MODEL_WITH_ADMIN_MODEL.items():
     admin.site.register(model, admin_model)

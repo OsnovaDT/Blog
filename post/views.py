@@ -22,6 +22,8 @@ from post.models import Post, LikeDates, DislikeDates
 
 
 class PostLikeDatesApi(ListAPIView):
+    """Api with PostLikeDatesSerializer serializer"""
+
     serializer_class = PostLikeDatesSerializer
 
     def get_queryset(self):
@@ -29,11 +31,13 @@ class PostLikeDatesApi(ListAPIView):
         date_to = self.request.query_params.get('date_to')
 
         return LikeDates.objects.filter(
-            like_date__range=(date_from, date_to)
+            like_date__range=(date_from, date_to),
         )
 
 
 class PostDislikeDatesApi(ListAPIView):
+    """Api with PostDislikeDatesSerializer serializer"""
+
     serializer_class = PostDislikeDatesSerializer
 
     def get_queryset(self):
@@ -41,7 +45,7 @@ class PostDislikeDatesApi(ListAPIView):
         date_to = self.request.query_params.get('date_to')
 
         return DislikeDates.objects.filter(
-            dislike_date__range=(date_from, date_to)
+            dislike_date__range=(date_from, date_to),
         )
 
 
@@ -49,25 +53,35 @@ class PostListView(ListView):
     """Posts's list"""
 
     model = Post
+
     paginate_by = 10
+
     template_name = 'post/all.html'
+
     context_object_name = 'posts'
 
 
-class CreatePostView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     """View for creating post"""
 
     model = Post
+
     template_name = 'post/create.html'
-    fields = ('title', 'content', 'author', 'status')
+
     success_url = reverse_lazy('post:all')
+
+    fields = (
+        'title', 'content', 'author', 'status',
+    )
 
 
 class PostDetailView(DetailView):
     """Detail view for a post"""
 
     model = Post
+
     template_name = 'post/detail.html'
+
     context_object_name = 'post'
 
 
@@ -102,8 +116,8 @@ def get_user_from_request(request: WSGIRequest) -> User | None:
 def check_post_estimation(request: WSGIRequest) -> HttpResponse:
     """Check is the post has likes or dislikes from the user"""
 
-    is_user_liked_this_post: False
-    is_user_disliked_this_post: False
+    is_user_liked_this_post = False
+    is_user_disliked_this_post = False
 
     post = get_post_from_request(request)
     user = get_user_from_request(request)
@@ -112,15 +126,18 @@ def check_post_estimation(request: WSGIRequest) -> HttpResponse:
         is_user_liked_this_post = user in post.liked_authors.all()
         is_user_disliked_this_post = user in post.disliked_authors.all()
 
-    return HttpResponse(dumps({
-        'is_user_liked_this_post': is_user_liked_this_post,
-        'is_user_disliked_this_post': is_user_disliked_this_post,
-    }))
+    return HttpResponse(
+        dumps({
+            'is_user_liked_this_post': is_user_liked_this_post,
+            'is_user_disliked_this_post': is_user_disliked_this_post,
+        })
+    )
 
 
+# TODO: Refactoring
 @csrf_exempt
 @login_required
-def like_click_processing(request: WSGIRequest) -> HttpResponse:
+def process_click_of_like(request: WSGIRequest) -> HttpResponse:
     """Processing of clicking on like"""
 
     is_user_liked_this_post = False
@@ -128,7 +145,6 @@ def like_click_processing(request: WSGIRequest) -> HttpResponse:
     post = get_post_from_request(request)
     user = get_user_from_request(request)
 
-    # TODO: Refactoring
     if post:
         if user and (user != post.author):
             # If user delete like
@@ -205,9 +221,10 @@ def like_click_processing(request: WSGIRequest) -> HttpResponse:
     )
 
 
+# TODO: Refactoring
 @csrf_exempt
 @login_required
-def dislike_click_processing(request: WSGIRequest) -> HttpResponse:
+def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
     """Processing of clicking on dislike"""
 
     is_user_disliked_this_post = False
@@ -215,7 +232,6 @@ def dislike_click_processing(request: WSGIRequest) -> HttpResponse:
     post = get_post_from_request(request)
     user = get_user_from_request(request)
 
-    # TODO: Refactoring
     if post:
         if user and (user != post.author):
             # If user delete like

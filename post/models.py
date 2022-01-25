@@ -13,35 +13,55 @@ User = get_user_model()
 
 
 class LikeDates(models.Model):
-    """Post's likes dates"""
+    """Dates of likes"""
 
-    user_id = models.PositiveIntegerField()
-    post_id = models.PositiveIntegerField()
-    like_date = models.DateField(auto_now_add=True)
+    like_date = models.DateField(
+        auto_now_add=True,
+    )
+
+    user_id = models.PositiveIntegerField(
+        editable=False,
+    )
+
+    post_id = models.PositiveIntegerField(
+        editable=False,
+    )
 
     def __str__(self):
-        return "post: " + str(self.post_id) + " | user: " + str(self.user_id)
+        return str(self.like_date)
 
     class Meta:
-        """Metainformation about the model"""
+        """Metainformation about LikeDates model"""
 
-        unique_together = ('user_id', 'post_id')
+        unique_together = (
+            'user_id', 'post_id',
+        )
 
 
 class DislikeDates(models.Model):
-    """Post's dislikes dates"""
+    """Dates of dislikes"""
 
-    user_id = models.PositiveIntegerField()
-    post_id = models.PositiveIntegerField()
-    dislike_date = models.DateField(auto_now_add=True)
+    dislike_date = models.DateField(
+        auto_now_add=True
+    )
+
+    user_id = models.PositiveIntegerField(
+        editable=False,
+    )
+
+    post_id = models.PositiveIntegerField(
+        editable=False,
+    )
 
     def __str__(self):
-        return "post: " + str(self.post_id) + " | user: " + str(self.user_id)
+        return str(self.dislike_date)
 
     class Meta:
-        """Metainformation about the model"""
+        """Metainformation about DislikeDates model"""
 
-        unique_together = ('user_id', 'post_id')
+        unique_together = (
+            'user_id', 'post_id',
+        )
 
 
 class Post(models.Model):
@@ -73,7 +93,7 @@ class Post(models.Model):
     status = models.CharField(
         max_length=20,
         choices=POST_STATUS,
-        default="draft",
+        default="publish",
     )
 
     likes = models.PositiveIntegerField(
@@ -99,10 +119,11 @@ class Post(models.Model):
     )
 
     def __str__(self):
-        return str(self.title)[:40] + "... (" + str(self.author) + ")"
+        return str(self.title) + " (" + str(self.author) + ")"
 
     class Meta:
-        """Metainformation about the model"""
+        """Metainformation about Post model"""
 
-        unique_together = ('title', 'author')
-        ordering = ['-published_time']
+        unique_together = ('title', 'author',)
+
+        ordering = ('-published_time',)
