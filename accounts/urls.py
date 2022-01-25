@@ -2,9 +2,8 @@
 
 from django.urls import path, reverse_lazy
 from django.contrib.auth.views import (
-    LoginView, LogoutView, PasswordChangeView,
-    PasswordResetCompleteView, PasswordResetConfirmView, PasswordResetView,
-    PasswordResetDoneView,
+    LoginView, LogoutView, PasswordChangeView, PasswordResetView,
+    PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView,
 )
 
 from accounts.views import SignUp
@@ -14,24 +13,33 @@ app_name = 'accounts'
 
 urlpatterns = [
     # Signup
-    path('signup/', SignUp.as_view(), name='signup'),
+    path(
+        'signup/',
+        SignUp.as_view(),
+        name='signup',
+    ),
 
     # Login and logout
     path(
         'login/',
         LoginView.as_view(template_name='accounts/login.html'),
-        name='login'
+        name='login',
     ),
-    path('logout/', LogoutView.as_view(), name='logout'),
+
+    path(
+        'logout/',
+        LogoutView.as_view(),
+        name='logout',
+    ),
 
     # Password change
     path(
-        'change_password/',
+        'password_change/',
         PasswordChangeView.as_view(
-            template_name='accounts/change_password.html',
+            template_name='accounts/password_change.html',
             success_url=reverse_lazy('post:all'),
         ),
-        name='password_change'
+        name='password_change',
     ),
 
     # Password reset
@@ -40,21 +48,23 @@ urlpatterns = [
         PasswordResetView.as_view(
             template_name='accounts/password_reset/password_reset.html',
             subject_template_name=\
-                'accounts/password_reset/message_subject.txt',
+                'accounts/password_reset/message/subject.txt',
             email_template_name=\
-                'accounts/password_reset/message_body.html',
-            success_url=reverse_lazy('accounts:message_sent'),
+                'accounts/password_reset/message/body.html',
+            success_url=reverse_lazy('accounts:password_reset_message_sent'),
         ),
-        name="password_reset"
+        name="password_reset",
     ),
 
     path(
         'password_reset/message_sent/',
         PasswordResetDoneView.as_view(
             template_name='accounts/password_reset/message_sent.html',
-            extra_context={'is_message_sent': True},
+            extra_context={
+                'is_message_sent': True,
+            },
         ),
-        name="message_sent"
+        name="password_reset_message_sent",
     ),
 
     path(
@@ -63,7 +73,7 @@ urlpatterns = [
             template_name='accounts/password_reset/set_new_password.html',
             success_url=reverse_lazy('accounts:password_successfully_reset'),
         ),
-        name="set_new_password"
+        name="set_new_password",
     ),
 
     path(
@@ -72,6 +82,6 @@ urlpatterns = [
             template_name=\
                 'accounts/password_reset/password_successfully_reset.html',
         ),
-        name='password_successfully_reset'
+        name='password_successfully_reset',
     ),
 ]
