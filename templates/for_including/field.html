@@ -1,7 +1,7 @@
-<div class="form_item col-md-12">
-    <span class="simple_text dark_text">{{ FIELD_TITLE }}</span>
+<div class="col-md-12">
+    <span>{{ FIELD_TITLE }}</span>
 
     <div class="form_input">{{ FIELD }}</div>
 
-    {% include 'for_including/field_errors.html' with FORM_FIELD=FIELD %}
+    {% include 'for_including/errors/field_errors.html' with FORM_FIELD=FIELD %}
 </div>

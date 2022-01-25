@@ -1,7 +1,7 @@
 <div class="col-md-12">
     {% if FORM.non_field_errors %}
         {% for error in FORM.non_field_errors %}
-            {% include 'for_including/error.html' with ERROR=error %}
+            {% include 'for_including/errors/error.html' with ERROR=error %}
         {% endfor %}
     {% endif %}
 </div>
