@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  blog_db:
-    container_name: blog_db
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+  # blog_db:
+  #   container_name: blog_db
+  #   image: postgres
+  #   volumes:
+  #     - ./data/db:/var/lib/postgresql/data
     # environment:
     #   - POSTGRES_NAME=postgres
     #   - POSTGRES_USER=postgres
@@ -22,5 +22,5 @@ services:
     #   - POSTGRES_NAME=postgres
     #   - POSTGRES_USER=postgres
     #   - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - blog_db
+    # depends_on:
+    #   - blog_db
