@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="col-md-8 offset-md-2 dark_div item">
+<div class="col-md-8 offset-md-2 dark_div">
     {# Author and post's date #}
     <div class="post_top_info">
         <span><a href="{% url 'user:detail' post.author.pk %}">{{ post.author }}</a></span>
@@ -11,15 +11,12 @@
     </div>
 
     {# Title #}
-    
     {% if IS_LINK %}
         <a href="{% url 'post:detail' post.pk %}">
-    {% endif %}
-
-        <h2>{{ post.title }}</h2>
-
-    {% if IS_LINK %}
+            <h2>{{ post.title }}</h2>
         </a>
+    {% else %}
+        <h2>{{ post.title }}</h2>
     {% endif %}
 
     {# Content #}
@@ -27,17 +24,20 @@
         <p>{{ CONTENT }}</ps>
     </div>
 
+    {# Estimation #}
     <div class="post_estimation">
         {# Likes #}
         <img src="{% static 'images/like.png' %}" alt="Like" width="40px" height="40px" 
             class="image_link post_like" post_id="{{ post.id }}">
+
         <span class="post_like_amount" post_id="{{ post.id }}">
             {{ post.likes }}
         </span>
 
         {# Dislikes #}
         <img src="{% static 'images/dislike.png' %}" alt="Dislike" width="40px" height="40px"
-            class="image_link post_dislike" post_id="{{ post.id }}"> 
+            class="image_link post_dislike" post_id="{{ post.id }}">
+
         <span class="post_dislike_amount" post_id="{{ post.id }}">
             {{ post.dislikes }}
         </span>

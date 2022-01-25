@@ -3,15 +3,15 @@
         <div class="row">
             {# Home page link #}
             <div class="col-md-2">
-                <a href="{% url 'post:all' %}">
-                    All posts in a row
-                </a>
+                <a href="{% url 'post:all' %}">All posts in a row</a>
             </div>
 
-            {# Logo (home page link) #}
+            {# User or Login redirect #}
             <div class="col-md-2 offset-md-8">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'user:detail' user.pk %}">{{ user.username|truncatechars:10 }}</a>
+                    <a href="{% url 'user:detail' user.pk %}">
+                        {{ user.username|truncatechars:10 }}
+                    </a>
                 {% else %}
                     <a href="{% url 'accounts:login' %}">Login</a>
                 {% endif %}

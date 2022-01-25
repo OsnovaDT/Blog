@@ -10,10 +10,10 @@
                 </a>
             </div>
 
+            {# User login, dropdown menu and image #}
             {% if user.is_authenticated %}
-                {# User login, dropdown menu and image #}
                 <div class="col-md-3 offset-md-7">
-                    <div class="row user_info">
+                    <div class="row">
                         {# User login and dropdown menu #}
                         <div class="col-md-7 user_login">
                             <img id="user_dropdown_menu_arrow" src="{% static 'images/dropdown_menu_arrow.svg' %}" alt="Dropdown menu arrow">
@@ -33,11 +33,11 @@
                             </div>
                         </div>
 
-                        {# User image #}
+                        {# User avatar #}
                         <div class="col-md-5">
                             <a href="{% url 'user:detail' user.pk %}">
                                 {% if user.avatar %}
-                                    <img src="{{ user.avatar.url }}">
+                                    <img src="{{ user.avatar.url }}" width="40px" height="40px">
                                 {% else %}
                                     <img src="{% static 'images/default_avatar.png' %}" width="40px" height="40px">
                                 {% endif %}
@@ -46,11 +46,11 @@
                     </div>
                 </div>
             {% else %}
-                <div class="col-md-2 offset-md-7" style="text-align: right;">
+                <div class="col-md-1 offset-md-8">
                     <a href="{% url 'accounts:signup' %}">Signup</a>
                 </div>
 
-                <div class="col-md-1" style="text-align: right;">
+                <div class="col-md-1">
                     <a href="{% url 'accounts:login' %}">Login</a>
                 </div>
             {% endif %}

@@ -1,35 +1,31 @@
 {% extends 'layouts/base.html' %}
-{% load static %}
 
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-<div class="col-md-6 offset-md-3 dark_div item">
-    <form method="post" novalidate>
-        {% csrf_token %}
+    <div class="col-md-6 offset-md-3 dark_div">
+        <form method="post" novalidate>
+            {% csrf_token %}
 
-        {% include 'for_including/field.html' with FIELD_TITLE='Login' FIELD=form.username %}
+            {% include 'for_including/field.html' with FIELD_TITLE='Login' FIELD=form.username %}
 
-        <div class="not_first_form_field">
-            {% include 'for_including/field.html' with FIELD_TITLE='Password' FIELD=form.password %}
-        </div>
-
-        {% include 'for_including/form_errors.html' with FORM=form %}
-
-        <div class="col-md-12" style="margin-top: 30px;">
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="submit_button" type="submit" value="Login">
-                </div>
-
-                <a href="{% url 'accounts:password_reset' %}"
-                    class="col-md-6 form_button2" style="text-align: center">
-                    <div style="margin-top: 8.5px;">
-                        Forgot password?
-                    </div>
-                </a>
+            <div class="not_first_form_field">
+                {% include 'for_including/field.html' with FIELD_TITLE='Password' FIELD=form.password %}
             </div>
-        </div>
-    </form>
-</div>
+
+            {% include 'for_including/errors/form_errors.html' with FORM=form %}
+
+            <div class="col-md-12 submit_button_div">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="submit_button" type="submit" value="Login">
+                    </div>
+
+                    <a href="{% url 'accounts:password_reset' %}" class="col-md-6 form_button2">
+                        <div>Forgot password?</div>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock content %}
