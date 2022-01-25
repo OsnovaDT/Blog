@@ -1,22 +1,47 @@
+$purple: #8f0097;
+$dark: #191F22;
+$white: #FFF;
+
+*::selection{
+    background-color: $purple;
+}
+
+body{
+    height: 100vh;
+    display: flex; 
+    flex-direction: column; 
+    background-color: $dark !important;
+}
+
+footer{
+    margin-top: auto; 
+    border-top: 5px solid $purple;
+    padding: 20px;
+}
+
+.base_container {
+    padding-top: 180px;
+}
+
+a{
+    color: $purple !important;
+}
+
+p, span, h1, h2, h3, h4, h5, h6{
+    color: $white;
+}
+
 // Header
 
 header {
-    border-bottom: 5px solid rgba(143,0,151,255);
-    padding-top: 5px;
+    border-bottom: 5px solid $purple;
     position: fixed;
     width: 100%;
-    background-color: #191F22 !important;
+    background-color: $dark !important;
     z-index: 2;
 
-    & > input {
-        color: rgba(255, 255, 255, 0.5);
-        font-style: italic;
-        background-color: #191F22 !important;
-    }
-
     & > .container > div {
-        margin-top: 21px;
-        margin-bottom: 21px;
+        margin: 20px 0;
         align-items: center;
     }
 }
@@ -26,7 +51,6 @@ header {
 .user_login {
     display: flex;
     align-items: center;
-    justify-content: right;
 
     & > img {
         margin-right: 10px;
@@ -48,11 +72,6 @@ header {
 
         & > p > a {
             font-size: 18px;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
         }
     }
 
@@ -61,52 +80,11 @@ header {
     }
 }
 
-.dark_div {
-    background-color: #21282C;
-}
-
-.base_container {
-    padding-top: 180px;
-}
-
-span, h1, h2, h3, h4, h5, h6{
-    color: #FFF;
-}
-
-body{
-    background-color: #191F22 !important;
-}
-
-a{
-    color: rgba(143,0,151,255) !important;
-}
-
-.image_link:hover{
-    text-decoration: none;
-    cursor: pointer;
-}
-
-p{
-    color: #FFF;
-}
-
-.item{
-    margin-bottom: 40px;
-    padding: 40px !important;
-    border-radius: 4px;
-}
-
 // Post
 
 .post{
     &_top_info{
         margin-bottom: 10px;
-    }
-
-    &_content{
-        font-size: 1rem;
-        line-height: 1.56;
-        overflow-wrap: break-word;
     }
 
     &_published_time{
@@ -130,25 +108,35 @@ p{
     }
 }
 
-*::selection{
-    background-color: #8f0097;
+.user_post_title{
+    padding: 10px 40px;
 }
 
 // Form
 
 textarea, input, select{
-    background-color: #191F22;
-    color: #FFF;
+    background-color: $dark;
+    color: $white;
     outline: none;
     border: 1px solid rgba(20, 20, 20, 0.5);
+}
+
+textarea{
+    resize: none !important;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
 }
 
 input{
     border-radius: 4px;
     font-style: italic;
     padding: 5px 15px;
-    line-height: 27px;
     width: 100%;
+}
+
+select{
+    padding: 10px;
 }
 
 .form_input{
@@ -159,46 +147,36 @@ input{
     margin-top: 20px;
 }
 
-select{
-    padding: 10px;
-}
-
-textarea{
-    resize: none !important;
-    padding: 15px;
-    width: 100%;
-    height: 100%;
-}
-
-.submit_button_div{
-    margin-top: 30px;
+.submit_button, .form_button2{
+    height: 40px;
+    border: 0px;
 }
 
 .submit_button{
     background-color: #15C6B9;
-    color: #FFF;
     width: 190px;
-    height: 41px;
-    border-radius: 4px;
-    border: 0px;
 
     &:hover{
-        background-color: #8f0097;
+        background-color: $purple;
+    }
+
+    &_div{
+        margin-top: 30px;
     }
 }
 
-.form_button2{
-    background-color: #8f0097;
-    color: #FFF !important;
-    width: 100%;
-    height: 41px;
+.form_button2, .dark_div{
     border-radius: 4px;
-    border: 0px;
-    
+}
+
+.form_button2{
+    background-color: $purple;
+    color: $white !important;
+    width: 100%;
+
     &:hover{
         cursor: pointer;
         text-decoration: none;
-        color: #FFF !important;
         background-color: #15C6B9;
     }
 }
@@ -209,28 +187,15 @@ textarea{
     margin-top: 20px;
 }
 
-// Footer
-// footer{
-//     border-top: 5px solid #8f0097;
-//     padding: 20px;
-//     position: absolute;
-//     bottom: 0;
-//     width: 100%;
-// }
+// Other
 
-body{
-    height:100vh;
-    margin:0;
-    display:flex; 
-    flex-direction:column; 
+.dark_div {
+    background-color: #21282C;
+    padding: 40px !important;
+    margin-bottom: 30px;
 }
 
-footer{
-    margin-top:auto; 
-    border-top: 5px solid #8f0097;
-    padding: 20px;
-}
-
-.user_post_title{
-    padding: 10px 40px;
+.image_link:hover{
+    text-decoration: none;
+    cursor: pointer;
 }
