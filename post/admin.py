@@ -8,13 +8,17 @@ from post.models import Post, LikeDates, DislikeDates
 class LikeDatesAdmin(admin.ModelAdmin):
     """Admin panel for LikeDates model"""
 
-    list_display = ('like_date', 'user_id', 'post_id',)
+    list_display = (
+        'date', 'user', 'post',
+    )
 
 
 class DislikeDatesAdmin(admin.ModelAdmin):
     """Admin panel for DislikeDates model"""
 
-    list_display = ('dislike_date', 'user_id', 'post_id',)
+    list_display = (
+        'date', 'user', 'post',
+    )
 
 
 class PostAdmin(admin.ModelAdmin):

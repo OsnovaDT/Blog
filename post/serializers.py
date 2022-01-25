@@ -14,7 +14,7 @@ class PostLikeDatesSerializer(ModelSerializer):
         model = LikeDates
 
         fields = (
-            'like_date', 'user_id', 'post_id',
+            'date', 'user', 'post',
         )
 
 
@@ -27,5 +27,5 @@ class PostDislikeDatesSerializer(ModelSerializer):
         model = DislikeDates
 
         fields = (
-            'dislike_date', 'user_id', 'post_id',
+            'date', 'user', 'post',
         )
