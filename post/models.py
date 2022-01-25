@@ -1,5 +1,6 @@
 """Models of post app"""
 
+from enum import unique
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -30,7 +31,12 @@ class LikeDates(models.Model):
     )
 
     def __str__(self):
-        return str(self.like_date)
+        return str(self.date)
+
+    class Meta:
+        """Metainformation about LikeDates model"""
+
+        unique_together = ('user', 'post',)
 
 
 class DislikeDates(models.Model):
@@ -51,7 +57,12 @@ class DislikeDates(models.Model):
     )
 
     def __str__(self):
-        return str(self.dislike_date)
+        return str(self.date)
+
+    class Meta:
+        """Metainformation about DislikeDates model"""
+
+        unique_together = ('user', 'post',)
 
 
 class Post(models.Model):
