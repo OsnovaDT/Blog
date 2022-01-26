@@ -5,6 +5,10 @@
 * EMAIL_HOST_USER="<your_email_host_user>"
 * EMAIL_HOST_PASSWORD="<your_email_host_password>"
 * DEFAULT_FROM_EMAIL="<your_default_from_email>"
+* USERS_AMOUNT=<your_users_amount>
+* MAX_POSTS_PER_USER=<your_max_posts_per_user>
+* MAX_LIKES_PER_USER=<your_max_likes_per_user>
+* GECKODRIVER_PATH="<your_geckodriver_path>"
 ## 3.   Make this command in the first console window:
 sudo docker-compose up --build
 ## 4.   Make these commands in the second console window:
