@@ -2,8 +2,8 @@
 
 The bot get variables from .env file.
 Then it performs these actions:
-    1) Signup users
-    2) Creating a random number of posts with any content
+    1) Register users
+    2) Creating a random number of posts
     3) Like a random number of posts
 
 """
@@ -29,24 +29,32 @@ SITE_DOMAIN = 'http://127.0.0.1:8000/'
 USER_PASSWORD = 'OsnovaDTBLog'
 
 
-def signup_user(login: str, password: str, driver: webdriver) -> None:
-    """Signup user on the site"""
-
-    driver.get(SITE_DOMAIN + "accounts/signup/")
-
-    username_input = driver.find_element_by_name("username")
-    username_input.send_keys(login)
-
-    password1_input = driver.find_element_by_name("password1")
-    password1_input.send_keys(password)
-
-    password2_input = driver.find_element_by_name("password2")
-    password2_input.send_keys(password)
+def click_submit_button(driver: webdriver) -> None:
+    """Click submit button on the form"""
 
     submit_button = driver.find_element_by_class_name("submit_button")
     submit_button.click()
 
-    print(f'User {login} is in database')
+
+def fill_input(name: str, value: str, driver: webdriver) -> None:
+    """Fill input on the form"""
+
+    input = driver.find_element_by_name(name)
+    input.send_keys(value)
+
+
+def register_user(username: str, password: str, driver: webdriver) -> None:
+    """Signup user on the site"""
+
+    driver.get(SITE_DOMAIN + "accounts/signup/")
+
+    fill_input("username", username, driver)
+    fill_input("password1", password, driver)
+    fill_input("password2", password, driver)
+
+    click_submit_button(driver)
+
+    print(f'User {username} is in database')
 
 
 def authenticate_user(username: str, password: str, driver: webdriver) -> None:
@@ -54,14 +62,10 @@ def authenticate_user(username: str, password: str, driver: webdriver) -> None:
 
     driver.get(SITE_DOMAIN + "accounts/login/")
 
-    username_input = driver.find_element_by_name("username")
-    username_input.send_keys(username)
+    fill_input("username", username, driver)
+    fill_input("password", password, driver)
 
-    password_input = driver.find_element_by_name("password")
-    password_input.send_keys(password)
-
-    submit_button = driver.find_element_by_class_name("submit_button")
-    submit_button.click()
+    click_submit_button(driver)
 
     print(f'Logged in as {username}')
 
@@ -71,16 +75,23 @@ def create_post(title: str, content: str, driver: webdriver) -> None:
 
     driver.get(SITE_DOMAIN + "post/create/")
 
-    username_input = driver.find_element_by_name("title")
-    username_input.send_keys(title)
+    fill_input("title", title, driver)
+    fill_input("content", content, driver)
 
-    password_input = driver.find_element_by_name("content")
-    password_input.send_keys(content)
-
-    submit_button = driver.find_element_by_class_name("submit_button")
-    submit_button.click()
+    click_submit_button(driver)
 
     print(f'Created post "{title}"')
+
+
+def create_user_posts(username: str, posts_amount: int, driver: webdriver):
+    """Create posts for the user"""
+
+    for post_number in range(posts_amount):
+        create_post(
+            f'Title for post {post_number + 1} created by {username}',
+            f'Content for post {post_number + 1} created by {username}',
+            driver,
+        )
 
 
 if __name__ == '__main__':
@@ -100,7 +111,7 @@ if __name__ == '__main__':
         username = f'selenium_test_{user_number + 1}'
         posts_amount = randint(1, MAX_POSTS_PER_USER)
 
-        signup_user(
+        register_user(
             username, USER_PASSWORD, firefox_driver,
         )
 
@@ -108,11 +119,8 @@ if __name__ == '__main__':
             username, USER_PASSWORD, firefox_driver,
         )
 
-        for post_number in range(posts_amount):
-            create_post(
-                f'Title for post {post_number + 1} created by {username}',
-                f'Content for post {post_number + 1} created by {username}',
-                firefox_driver,
-            )
+        create_user_posts(
+            username, posts_amount, firefox_driver,
+        )
 
     firefox_driver.close()
