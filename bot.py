@@ -28,6 +28,10 @@ SITE_DOMAIN = 'http://127.0.0.1:8000/'
 
 USER_PASSWORD = 'OsnovaDTBLog'
 
+LIKE_CLASS = 'post_like'
+
+POST_ESTIMATION_CLASS = 'post_estimation'
+
 
 def click_submit_button(driver: webdriver) -> None:
     """Click submit button on the form"""
@@ -94,6 +98,20 @@ def create_user_posts(username: str, posts_amount: int, driver: webdriver):
         )
 
 
+def get_all_posts(driver: webdriver) -> list:
+    """Return all divs with post_estimation class from post/all/ page"""
+
+    driver.get(SITE_DOMAIN + "post/all/")
+
+    return driver.find_elements_by_class_name(POST_ESTIMATION_CLASS)
+
+
+def like_post(post: webdriver) -> None:
+    """Like the post"""
+
+    post.find_element_by_class_name(LIKE_CLASS).click()
+
+
 if __name__ == '__main__':
     firefox_driver_capabilities = DesiredCapabilities().FIREFOX
     firefox_driver_capabilities["marionette"] = True
@@ -122,5 +140,20 @@ if __name__ == '__main__':
         create_user_posts(
             username, posts_amount, firefox_driver,
         )
+
+    for user_number in range(USERS_AMOUNT):
+        username = f'selenium_test_{user_number + 1}'
+
+        authenticate_user(
+            username, USER_PASSWORD, firefox_driver,
+        )
+
+        all_posts = get_all_posts(firefox_driver)
+
+        for post in all_posts:
+            is_user_likes_post = bool(randint(0, 1))
+
+            if is_user_likes_post:
+                like_post(post)
 
     firefox_driver.close()
