@@ -52,3 +52,6 @@ sudo docker-compose up --build
 
 ## Dislikes for specified dates:
 ![Dislikes for specified dates](https://github.com/OsnovaDT/Blog/blob/main/readme_images/api/dislikes_dates.png)
+
+# Work of the bot
+![Work of the bot](https://github.com/OsnovaDT/Blog/blob/main/readme_images/bot.gif)
