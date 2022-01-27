@@ -150,6 +150,7 @@ if __name__ == '__main__':
         )
 
     for user_number in range(USERS_AMOUNT):
+        user_likes = 0
         username = f'selenium_test_{user_number + 1}'
 
         authenticate_user(
@@ -159,14 +160,16 @@ if __name__ == '__main__':
         all_posts = get_all_posts(firefox_driver)
 
         for post in all_posts:
-            is_user_likes_post = bool(randint(0, 1))
+            if user_likes < MAX_LIKES_PER_USER:
+                is_user_likes_post = bool(randint(0, 1))
 
-            if is_user_likes_post:
-                like_post(post)
-            else:
-                is_user_dislikes_post = bool(randint(0, 1))
+                if is_user_likes_post:
+                    like_post(post)
+                    user_likes += 1
+                else:
+                    is_user_dislikes_post = bool(randint(0, 1))
 
-                if is_user_dislikes_post:
-                    dislike_post(post)
+                    if is_user_dislikes_post:
+                        dislike_post(post)
 
     firefox_driver.close()
