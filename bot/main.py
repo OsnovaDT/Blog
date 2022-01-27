@@ -24,13 +24,15 @@ def get_firefox_driver() -> webdriver.Firefox:
     firefox_driver_capabilities["marionette"] = True
 
     firefox_options = Options()
-    firefox_options.headless = True
+    # firefox_options.headless = True
 
     firefox_driver = webdriver.Firefox(
         capabilities=firefox_driver_capabilities,
         executable_path=GECKODRIVER_PATH,
         options=firefox_options,
     )
+
+    firefox_driver.maximize_window()
 
     return firefox_driver
 
