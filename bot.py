@@ -30,6 +30,8 @@ USER_PASSWORD = 'OsnovaDTBLog'
 
 LIKE_CLASS = 'post_like'
 
+DISLIKE_CLASS = 'post_dislike'
+
 POST_ESTIMATION_CLASS = 'post_estimation'
 
 
@@ -112,6 +114,12 @@ def like_post(post: webdriver) -> None:
     post.find_element_by_class_name(LIKE_CLASS).click()
 
 
+def dislike_post(post: webdriver) -> None:
+    """Dislike the post"""
+
+    post.find_element_by_class_name(DISLIKE_CLASS).click()
+
+
 if __name__ == '__main__':
     firefox_driver_capabilities = DesiredCapabilities().FIREFOX
     firefox_driver_capabilities["marionette"] = True
@@ -155,5 +163,10 @@ if __name__ == '__main__':
 
             if is_user_likes_post:
                 like_post(post)
+            else:
+                is_user_dislikes_post = bool(randint(0, 1))
+
+                if is_user_dislikes_post:
+                    dislike_post(post)
 
     firefox_driver.close()
