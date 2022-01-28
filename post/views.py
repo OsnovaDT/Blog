@@ -31,7 +31,7 @@ class PostLikeDatesApi(ListAPIView):
         date_to = self.request.query_params.get('date_to')
 
         return LikeDates.objects.filter(
-            like_date__range=(date_from, date_to),
+            date__range=(date_from, date_to),
         )
 
 
@@ -45,7 +45,7 @@ class PostDislikeDatesApi(ListAPIView):
         date_to = self.request.query_params.get('date_to')
 
         return DislikeDates.objects.filter(
-            dislike_date__range=(date_from, date_to),
+            date__range=(date_from, date_to),
         )
 
 
