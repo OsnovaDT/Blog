@@ -19,6 +19,7 @@ from post.serializers import (
     PostLikeDatesSerializer, PostDislikeDatesSerializer
 )
 from post.models import Post, LikeDates, DislikeDates
+from blog.views import add_user_id_to_request
 
 
 class PostLikeDatesApi(ListAPIView):
@@ -63,6 +64,13 @@ class PostListView(ListView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     """View for creating post"""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        add_user_id_to_request(self.request)
+
+        return context
 
     model = Post
 

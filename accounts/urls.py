@@ -2,11 +2,11 @@
 
 from django.urls import path, reverse_lazy
 from django.contrib.auth.views import (
-    LoginView, LogoutView, PasswordChangeView, PasswordResetView,
-    PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView,
+    LoginView, LogoutView, PasswordResetView, PasswordResetDoneView,
+    PasswordResetConfirmView, PasswordResetCompleteView,
 )
 
-from accounts.views import SignUp
+from accounts.views import SignUpView, change_password
 
 
 app_name = 'accounts'
@@ -15,7 +15,7 @@ urlpatterns = [
     # Signup
     path(
         'signup/',
-        SignUp.as_view(),
+        SignUpView.as_view(),
         name='signup',
     ),
 
@@ -35,10 +35,7 @@ urlpatterns = [
     # Password change
     path(
         'password_change/',
-        PasswordChangeView.as_view(
-            template_name='accounts/password_change.html',
-            success_url=reverse_lazy('post:all'),
-        ),
+        change_password,
         name='password_change',
     ),
 
