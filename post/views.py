@@ -16,16 +16,16 @@ from django.urls import reverse_lazy
 from rest_framework.generics import ListAPIView
 
 from post.serializers import (
-    PostLikeDatesSerializer, PostDislikeDatesSerializer
+    PostLikeDateSerializer, PostDislikeDateSerializer
 )
-from post.models import Post, LikeDate, DislikeDates
+from post.models import Post, LikeDate, DislikeDate
 from blog.views import add_user_id_to_request
 
 
-class PostLikeDatesApi(ListAPIView):
-    """Api with PostLikeDatesSerializer serializer"""
+class PostLikeDateApi(ListAPIView):
+    """Api with PostLikeDateSerializer serializer"""
 
-    serializer_class = PostLikeDatesSerializer
+    serializer_class = PostLikeDateSerializer
 
     def get_queryset(self):
         date_from = self.request.query_params.get('date_from')
@@ -36,16 +36,16 @@ class PostLikeDatesApi(ListAPIView):
         )
 
 
-class PostDislikeDatesApi(ListAPIView):
-    """Api with PostDislikeDatesSerializer serializer"""
+class PostDislikeDateApi(ListAPIView):
+    """Api with PostDislikeDateSerializer serializer"""
 
-    serializer_class = PostDislikeDatesSerializer
+    serializer_class = PostDislikeDateSerializer
 
     def get_queryset(self):
         date_from = self.request.query_params.get('date_from')
         date_to = self.request.query_params.get('date_to')
 
-        return DislikeDates.objects.filter(
+        return DislikeDate.objects.filter(
             date__range=(date_from, date_to),
         )
 
@@ -185,8 +185,8 @@ def process_click_of_like(request: WSGIRequest) -> HttpResponse:
                     )
                 like_date.save()
 
-                if DislikeDates.objects.filter(user=user, post=post).exists():
-                    dislike_date = DislikeDates.objects.get(
+                if DislikeDate.objects.filter(user=user, post=post).exists():
+                    dislike_date = DislikeDate.objects.get(
                         user=user, post=post
                     )
                     dislike_date.delete()
@@ -240,8 +240,8 @@ def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
                 post.dislikes -= 1
                 post.disliked_authors.remove(user)
 
-                if DislikeDates.objects.filter(user=user, post=post).exists():
-                    dislike_date = DislikeDates.objects.get(
+                if DislikeDate.objects.filter(user=user, post=post).exists():
+                    dislike_date = DislikeDate.objects.get(
                         user=user, post=post
                     )
                     dislike_date.delete()
@@ -256,13 +256,13 @@ def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
 
                 is_user_disliked_this_post = True
 
-                if DislikeDates.objects.filter(user=user, post=post).exists():
-                    dislike_date = DislikeDates.objects.get(
+                if DislikeDate.objects.filter(user=user, post=post).exists():
+                    dislike_date = DislikeDate.objects.get(
                         user=user, post=post
                     )
                     dislike_date.date = datetime.now()
                 else:
-                    dislike_date = DislikeDates.objects.create(
+                    dislike_date = DislikeDate.objects.create(
                         user=user, post=post, date=datetime.now(),
                     )
                 dislike_date.save()
@@ -280,7 +280,7 @@ def process_click_of_dislike(request: WSGIRequest) -> HttpResponse:
 
                 is_user_disliked_this_post = True
 
-                dislike_date = DislikeDates.objects.create(
+                dislike_date = DislikeDate.objects.create(
                     user=user, post=post, date=datetime.now(),
                 )
                 dislike_date.save()

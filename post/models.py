@@ -39,7 +39,7 @@ class LikeDate(models.Model):
         unique_together = ('user', 'post',)
 
 
-class DislikeDates(models.Model):
+class DislikeDate(models.Model):
     """Dates of dislikes"""
 
     date = models.DateField(
@@ -60,7 +60,7 @@ class DislikeDates(models.Model):
         return str(self.date)
 
     class Meta:
-        """Metainformation about DislikeDates model"""
+        """Metainformation about DislikeDate model"""
 
         unique_together = ('user', 'post',)
 

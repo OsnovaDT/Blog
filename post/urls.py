@@ -5,7 +5,7 @@ from django.urls import path
 from post.views import (
     PostDetailView, PostListView, PostCreateView,
     process_click_of_like, process_click_of_dislike, check_post_estimation,
-    PostLikeDatesApi, PostDislikeDatesApi,
+    PostLikeDateApi, PostDislikeDateApi,
 )
 
 
@@ -52,13 +52,13 @@ urlpatterns = [
     # API
     path(
         'api/likes/dates/',
-        PostLikeDatesApi.as_view(),
+        PostLikeDateApi.as_view(),
         name='api_likes',
     ),
 
     path(
         'api/dislikes/dates/',
-        PostDislikeDatesApi.as_view(),
+        PostDislikeDateApi.as_view(),
         name='api_dislikes',
     ),
 ]
