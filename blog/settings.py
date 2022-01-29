@@ -147,6 +147,8 @@ USE_L10N = True
 
 ### OTHER ###
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
 SECRET_KEY = config('SECRET_KEY')
 
 ROOT_URLCONF = 'blog.urls'

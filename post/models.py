@@ -109,14 +109,12 @@ class Post(models.Model):
         User,
         related_name='liked_authors',
         blank=True,
-        null=True,
     )
 
     disliked_authors = models.ManyToManyField(
         User,
         related_name='disliked_authors',
         blank=True,
-        null=True,
     )
 
     def __str__(self):
