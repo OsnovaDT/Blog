@@ -39,6 +39,7 @@ class LikeDate(models.Model):
         unique_together = ('user', 'post',)
 
 
+# TODO: Union with LikeDate
 class DislikeDate(models.Model):
     """Dates of dislikes"""
 
