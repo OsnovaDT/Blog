@@ -14,7 +14,7 @@ User = get_user_model()
 
 
 class LikeDate(models.Model):
-    """Dates of likes"""
+    """Date of like"""
 
     date = models.DateField(
         auto_now_add=True,
