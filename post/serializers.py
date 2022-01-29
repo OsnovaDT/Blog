@@ -2,16 +2,16 @@
 
 from rest_framework.serializers import ModelSerializer
 
-from post.models import LikeDates, DislikeDates
+from post.models import LikeDate, DislikeDates
 
 
 class PostLikeDatesSerializer(ModelSerializer):
-    """Serializer for LikeDates model"""
+    """Serializer for LikeDate model"""
 
     class Meta:
         """Metainformation about PostLikeDatesSerializer serializer"""
 
-        model = LikeDates
+        model = LikeDate
 
         fields = (
             'date', 'user', 'post',

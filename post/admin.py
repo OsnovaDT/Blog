@@ -2,11 +2,11 @@
 
 from django.contrib import admin
 
-from post.models import Post, LikeDates, DislikeDates
+from post.models import Post, LikeDate, DislikeDates
 
 
 class LikeDatesAdmin(admin.ModelAdmin):
-    """Admin panel for LikeDates model"""
+    """Admin panel for LikeDate model"""
 
     list_display = (
         'date', 'user', 'post',
@@ -35,7 +35,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 MODEL_WITH_ADMIN_MODEL = {
-    LikeDates: LikeDatesAdmin,
+    LikeDate: LikeDatesAdmin,
     DislikeDates: DislikeDatesAdmin,
     Post: PostAdmin,
 }

@@ -3,7 +3,7 @@
 from django.test import TestCase, tag
 from django.contrib.auth import get_user_model
 
-from post.models import Post, LikeDates
+from post.models import Post, LikeDate
 from post.tests.mixins import COMMON_MIXINS, TestModelUniqueTogether
 
 
@@ -11,8 +11,8 @@ User = get_user_model()
 
 
 @tag('post_model')
-class LikeDatesTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
-    """Tests for LikeDates model"""
+class LikeDateTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
+    """Tests for LikeDate model"""
 
     @classmethod
     def setUpTestData(cls):
@@ -26,7 +26,7 @@ class LikeDatesTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
             content='Test content',
         )
 
-        cls.like_date = LikeDates.objects.create(
+        cls.like_date = LikeDate.objects.create(
             user=test_user_2, post=test_post,
         )
 
@@ -40,19 +40,19 @@ class LikeDatesTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
 
         cls.model_unique_together = ('user', 'post',)
 
-        cls.model_verbose_name = 'like dates'
+        cls.model_verbose_name = 'like date'
 
-        cls.model_verbose_name_plural = 'like datess'
+        cls.model_verbose_name_plural = 'like dates'
 
     def test_verbose_name(self):
         """Test verbose_name field"""
 
-        super().test_verbose_name(LikeDates)
+        super().test_verbose_name(LikeDate)
 
     def test_auto_now_add(self):
         """Test auto_now_add field"""
 
-        super().test_auto_now_add(LikeDates)
+        super().test_auto_now_add(LikeDate)
 
     def test_object_string_display(self):
         """Test object display"""
@@ -64,14 +64,14 @@ class LikeDatesTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
     def test_unique_together_of_model(self):
         """Test unique_together field for the model"""
 
-        super().test_unique_together_of_model(LikeDates)
+        super().test_unique_together_of_model(LikeDate)
 
     def test_verbose_name_of_model(self):
         """Test verbose_name field for the model"""
 
-        super().test_verbose_name_of_model(LikeDates)
+        super().test_verbose_name_of_model(LikeDate)
 
     def test_verbose_name_plural_of_model(self):
         """Test verbose_name_plural field for the model"""
 
-        super().test_verbose_name_plural_of_model(LikeDates)
+        super().test_verbose_name_plural_of_model(LikeDate)

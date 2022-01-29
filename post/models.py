@@ -13,7 +13,7 @@ POST_STATUS = (
 User = get_user_model()
 
 
-class LikeDates(models.Model):
+class LikeDate(models.Model):
     """Dates of likes"""
 
     date = models.DateField(
@@ -34,7 +34,7 @@ class LikeDates(models.Model):
         return str(self.date)
 
     class Meta:
-        """Metainformation about LikeDates model"""
+        """Metainformation about LikeDate model"""
 
         unique_together = ('user', 'post',)
 
