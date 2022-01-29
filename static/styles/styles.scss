@@ -57,25 +57,31 @@ header {
     }
 }
 
-#user_dropdown_menu {
-    border-radius: 7px;
-    width: 240px;
-    position: absolute;
-    right: -63px;
-    top: 54px;
-    display: none;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
-
-    & > div {
-        text-align: right;
-
-        & > p > a {
-            font-size: 18px;
+#user{
+    &_dropdown_menu {
+        border-radius: 7px;
+        width: 240px;
+        position: absolute;
+        right: -63px;
+        top: 54px;
+        display: none;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+        
+        & > div {
+            text-align: right;
+            
+            & > p > a {
+                font-size: 18px;
+            }
+        }
+        
+        &_arrow:hover{
+            cursor: pointer;
         }
     }
 
-    &_arrow:hover{
-        cursor: pointer;
+    &_header_info{
+        float: right;
     }
 }
 

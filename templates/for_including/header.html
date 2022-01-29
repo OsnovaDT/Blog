@@ -13,12 +13,12 @@
             {# User login, dropdown menu and image #}
             {% if user.is_authenticated %}
                 <div class="col-md-3 offset-md-7">
-                    <div class="row">
+                    <div class="row" id="user_header_info">
                         {# User login and dropdown menu #}
-                        <div class="col-md-7 user_login">
+                        <div class="col-md-9 user_login">
                             <img id="user_dropdown_menu_arrow" src="{% static 'images/dropdown_menu_arrow.svg' %}" alt="Dropdown menu arrow">
 
-                            <span>{{ user.username|truncatechars:10 }}</span>
+                            <span>{{ user.username|truncatechars:20 }}</span>
 
                             <div id="user_dropdown_menu" class="dark_div">
                                 <div>
@@ -34,7 +34,7 @@
                         </div>
 
                         {# User avatar #}
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <a href="{% url 'user:detail' user.pk %}">
                                 {% if user.avatar %}
                                     <img src="{{ user.avatar.url }}" width="40px" height="40px">
