@@ -176,6 +176,6 @@ class TestModelUniqueTogether:
 
 
 COMMON_MIXINS = (
-    TestAutoNowAddMixin, TestVerboseNameMixin, TestObjectStringDisplayMixin,
+    TestVerboseNameMixin, TestObjectStringDisplayMixin,
     TestModelVerboseNameMixin, TestModelVerboseNamePluralMixin,
 )

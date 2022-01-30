@@ -4,10 +4,10 @@ from django.test import TestCase, tag
 from django.contrib.auth import get_user_model
 
 from post.models import Post, LikeDate, DislikeDate
-from post.tests.mixins import (
+from blog.tests_mixins import (
     COMMON_MIXINS, TestModelUniqueTogether, TestMaxLengthMixin,
     TestDbIndexMixin, TestAutoNowMixin, TestChoicesMixin, TestBlankMixin,
-    TestDefaultMixin, TestModelOrdering,
+    TestDefaultMixin, TestModelOrdering, TestAutoNowAddMixin,
 )
 
 
@@ -20,7 +20,8 @@ POST_STATUS = (
 
 
 @tag('post_model')
-class LikeDateTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
+class LikeDateTests(
+    TestCase, *COMMON_MIXINS, TestModelUniqueTogether, TestAutoNowAddMixin):
     """Tests for LikeDate model"""
 
     @classmethod
@@ -87,7 +88,8 @@ class LikeDateTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
 
 
 @tag('post_model')
-class DislikeDateTests(TestCase, *COMMON_MIXINS, TestModelUniqueTogether):
+class DislikeDateTests(
+    TestCase, *COMMON_MIXINS, TestModelUniqueTogether, TestAutoNowAddMixin):
     """Tests for DislikeDate model"""
 
     @classmethod
@@ -158,7 +160,7 @@ class PostTests(
     TestCase, *COMMON_MIXINS, TestModelUniqueTogether,
     TestMaxLengthMixin, TestDbIndexMixin, TestAutoNowMixin,
     TestChoicesMixin, TestBlankMixin, TestDefaultMixin,
-    TestModelOrdering,):
+    TestModelOrdering, TestAutoNowAddMixin,):
     """Tests for Post model"""
 
     @classmethod
