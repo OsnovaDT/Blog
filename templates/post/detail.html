@@ -1,9 +1,15 @@
 {% extends 'layouts/base.html' %}
 
+{% load static %}
+
 {% block title %}{{ post.title|truncatechars:50 }}{% endblock title %}
 
 {% block content %}
     {% include 'for_including/post.html' with CONTENT=post.content|linebreaks IS_LINK=False %}
 
-    {% include 'for_including/post_script.html' %}
+    {% if user.is_authenticated %}
+        <script>
+            $.getScript("{% static 'js/estimation.js' %}");
+        </script>
+    {% endif %}
 {% endblock content %}

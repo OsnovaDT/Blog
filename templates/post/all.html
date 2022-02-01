@@ -1,5 +1,7 @@
 {% extends 'layouts/base.html' %}
 
+{% load static %}
+
 {% block title %}All publications in a row{% endblock title %}
 
 {% block content %}
@@ -13,5 +15,9 @@
         {% include 'for_including/success.html' with TEXT="There is not a single post yet" %}
     {% endif %}
 
-    {% include 'for_including/post_script.html' %}
+    {% if user.is_authenticated %}
+        <script>
+            $.getScript("{% static 'js/estimation.js' %}");
+        </script>
+    {% endif %}
 {% endblock content %}

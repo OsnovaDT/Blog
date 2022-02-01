@@ -28,7 +28,8 @@
     <div class="post_estimation">
         {# Likes #}
         <img src="{% static 'images/like.png' %}" alt="Like" width="40px" height="40px" 
-            class="{% if user != post.author %}image_link{% endif %} post_like" post_id="{{ post.id }}">
+            class="{% if user != post.author %}image_link{% endif %} post_like" post_id="{{ post.id }}"
+            user_id="{{ user.id }}">
 
         <span class="post_like_amount" post_id="{{ post.id }}">
             {{ post.likes }}
@@ -36,7 +37,8 @@
 
         {# Dislikes #}
         <img src="{% static 'images/dislike.png' %}" alt="Dislike" width="40px" height="40px"
-            class="{% if user != post.author %}image_link{% endif %} post_dislike" post_id="{{ post.id }}">
+            class="{% if user != post.author %}image_link{% endif %} post_dislike" post_id="{{ post.id }}"
+            user_id="{{ user.id }}">
 
         <span class="post_dislike_amount" post_id="{{ post.id }}">
             {{ post.dislikes }}
