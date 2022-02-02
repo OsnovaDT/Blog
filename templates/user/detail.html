@@ -1,11 +1,13 @@
 {% extends 'layouts/base.html' %}
 
+{% load static %}
+
 {% block title %}{{ user.username }}{% endblock title %}
 
 {% block content %}
     {# Username #}
     <div class="col-md-8 offset-md-2 dark_div">
-        <h2>{{ user.username }}</h2>
+        <h2>{{ detail_user.username }}</h2>
         <span>Date of registration: {{ user.date_joined|date:"d.m.Y" }}</span>
     </div>
 
@@ -29,5 +31,11 @@
         {% for draft in drafts %}
             {% include 'for_including/post.html' with CONTENT=draft.content|truncatechars:250 IS_LINK=True %}
         {% endfor %}
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <script>
+            $.getScript("{% static 'js/estimation.js' %}");
+        </script>
     {% endif %}
 {% endblock content %}

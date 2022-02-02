@@ -2,6 +2,7 @@
 
 from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.generics import ListAPIView
 
 from user.serializers import (
@@ -12,10 +13,12 @@ from post.models import Post
 from blog.views import add_user_id_to_request
 
 
-class UserDetailView(DetailView):
+class UserDetailView(DetailView, LoginRequiredMixin):
     """View for user's detail page"""
 
     model = User
+
+    context_object_name = 'detail_user'
 
     template_name = 'user/detail.html'
 
