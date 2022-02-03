@@ -7,8 +7,19 @@
 {% block content %}
     {# Username #}
     <div class="col-md-8 offset-md-2 dark_div">
-        <h2>{{ detail_user.username }}</h2>
-        <span>Date of registration: {{ user.date_joined|date:"d.m.Y" }}</span>
+        <div class="row">
+            {# Info #}
+            <div class="col-md-6">
+                <h2>{{ detail_user.username }}</h2>
+                <span>Date of registration: {{ user.date_joined|date:"d.m.Y" }}</span>
+            </div>
+
+            {# Avatar #}
+            <div class="col-md-2 offset-md-4">
+                <img width="90px" height="90px"
+                    src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}">
+            </div>
+        </div>
     </div>
 
     {# User's posts #}
