@@ -5,7 +5,7 @@
 {% block title %}{{ user.username }}{% endblock title %}
 
 {% block content %}
-    {# Username #}
+    {# User info #}
     <div class="col-md-8 offset-md-2 dark_div">
         <div class="row">
             {# Info #}
@@ -22,26 +22,57 @@
         </div>
     </div>
 
-    {# User's posts #}
-    {% if posts %}
-        <div class="col-md-8 offset-md-2 user_post_title">
-            <h2>My posts</h2>
+    {% if user == detail_user %}
+        {# User posts and drafts #}
+        <div class="col-md-8 offset-md-2 post_status_switch">
+            <div class="row" style="margin: 0;">
+                <div class="col-md-6 user_post_title post_status post_status_active" status='post'>
+                    <h2>My posts</h2>
+                </div>
+                <div class="col-md-6 user_post_title post_status post_status_disabled" status='draft'>
+                    <h2>My drafts</h2>
+                </div>
+            </div>
         </div>
 
-        {% for post in posts %}
-            {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
-        {% endfor %}
-    {% endif %}
-
-    {# User's drafts #}
-    {% if drafts %}
-        <div class="col-md-8 offset-md-2 user_post_title">
-            <h2>My drafts</h2>
+        <div id="user_posts">
+            {% if posts %}
+                {% for post in posts %}
+                    {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
+                {% endfor %}
+            {% else %}
+                <div class="col-md-8 offset-md-2 user_post_title no_posts_div">
+                    <h2 class="no_posts_message">You don't have any post</h2>
+                </div>
+            {% endif %}
         </div>
 
-        {% for draft in drafts %}
-            {% include 'for_including/post.html' with CONTENT=draft.content|truncatechars:250 IS_LINK=True %}
-        {% endfor %}
+        <div id="user_drafts" style="display: none;">
+            {% if drafts %}
+                {% for draft in drafts %}
+                    {% include 'for_including/post.html' with CONTENT=draft.content|truncatechars:250 IS_LINK=True post=draft %}
+                {% endfor %}
+            {% else %}
+                <div class="col-md-8 offset-md-2 user_post_title no_posts_div">
+                    <h2 class="no_posts_message">You don't have any draft</h2>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        {# Only user posts #}
+        {% if posts %}
+            <div class="col-md-8 offset-md-2 user_post_title">
+                <h2>Posts of user {{ detail_user.username }}</h2>
+            </div>
+
+            {% for post in posts %}
+                {% include 'for_including/post.html' with CONTENT=post.content|truncatechars:250 IS_LINK=True %}
+            {% endfor %}
+        {% else %}
+            <div class="col-md-8 offset-md-2 user_post_title">
+                <h2>{{ detail_user.username }} hasn't posted anything yet</h2>
+            </div>
+        {% endif %}
     {% endif %}
 
     {% if user.is_authenticated %}
@@ -49,4 +80,8 @@
             $.getScript("{% static 'js/estimation.js' %}");
         </script>
     {% endif %}
+
+    <script>
+        $.getScript("{% static 'js/user/scripts.js' %}");
+    </script>
 {% endblock content %}

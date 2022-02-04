@@ -87,6 +87,29 @@ header > .container > div {
 .post_dislike {
   margin-left: 20px;
 }
+.post_status_switch {
+  text-align: center;
+  padding: 0px !important;
+  background-color: #21282C;
+  margin-bottom: 30px;
+}
+.post_status_active {
+  background-color: rgba(143, 0, 151, 0.8);
+}
+.post_status_disabled {
+  cursor: pointer;
+}
+.post_status_disabled > h2:hover {
+  color: #8f0097;
+}
+
+.no_posts_div {
+  text-align: center;
+}
+.no_posts_message {
+  display: inline-block;
+  border-bottom: 2px solid #8f0097;
+}
 
 .user_post_title {
   padding: 10px 40px;

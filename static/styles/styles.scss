@@ -1,4 +1,5 @@
 $purple: #8f0097;
+$purple_dark: rgb(143, 0, 151, .8);
 $dark: #191F22;
 $white: #FFF;
 
@@ -110,6 +111,38 @@ header {
 
     &_dislike{
         margin-left: 20px;
+    }
+
+    &_status{
+        &_switch{
+            text-align: center;
+            padding: 0px !important;
+            background-color: #21282C;
+            margin-bottom: 30px;
+        }
+
+        &_active{
+            background-color: $purple_dark;
+        }
+
+        &_disabled{
+            cursor: pointer;
+
+            & > h2:hover{
+                color: $purple;
+            }
+        }
+    }
+}
+
+.no_posts{
+    &_div{
+        text-align: center;
+    }
+
+    &_message{
+        display: inline-block;
+        border-bottom: 2px solid $purple;
     }
 }
 
